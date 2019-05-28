@@ -65,6 +65,12 @@ button, input, textarea {
   margin: 5px;
 }
 
+label {
+  display: inline-block;
+  width: 30%;
+
+}
+
 input, textarea {
   background-color: #fafbfc; /*GH*/
   border: 1px solid #d1d5da; /*GH*/
