@@ -7,9 +7,7 @@ font-family: 'Anonymous Pro', monospace;
 body {
   font-family: 'Roboto', sans-serif;
 }
-button, input[type="text"] {
-  padding: 5px;
-}
+
 button:hover {
   cursor: pointer;
 }
@@ -27,14 +25,19 @@ button:hover {
 fieldset {
   border: 0;
 }
+main {
+  margin-right: 3%;
+  margin-left: 3%;
+}
 .mainForm {
-  display: flex;
-  align-self: center;
-  width: 30%;
+  /* display: flex;
+  align-self: center; */
+  width: 100%;
+  max-width: 700px;
 }
 section {
-  display: flex;
-  align-self: center;
+  /* display: flex;
+  align-self: center; */
   height: 50px;
   margin-top: 20px;
   font-size: 1.75em;
@@ -57,3 +60,23 @@ footer {
   padding-top: 20px; 
 }
 
+button, input, textarea {
+  border-radius: 10px;
+  margin: 5px;
+}
+
+input, textarea {
+  background-color: #fafbfc; /*GH*/
+  border: 1px solid #d1d5da; /*GH*/
+  color: #24292e; /*GH*/
+  line-height: 20px;
+  min-height: 34px;
+  box-shadow: inset 0 1px 2px rgba(27,31,35,.075);
+  padding: 6px 8px;
+}
+
+button {
+  background: greenyellow;
+  border: 1px solid green;
+  padding: 10px;
+}

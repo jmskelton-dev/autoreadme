@@ -18,49 +18,57 @@
         <main class="container">
             <section>Landing Text</section>
             <div class="mainForm">
-            <form role="form">
-                <fieldset>
-                    <legend>Repo Information</legend>
-                    <label for="github-repo-url">Github Repo URL:</label>
-                    <input type="url" name="repo-url" id="github-repo-url" placeholder="Enter your GitHub repo URL here." required>
-                    <span aria-hidden="true">(e.g. https://github.com/jskelton36/autoreadme)</span>
-                    <button type="submit">Get Repo Info</button>
-                </fieldset>
-                <fieldset>
-                    <legend>Readme Options</legend>
-                    <label for="repo-project-name">Project Name:</label>
-                    <input type="text" name="repo-project-name" id="repo-project-name" required>
-                    <label for="repo-project-description">Project Description</label>
-                    <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here."></textarea>
-                    <label for="repo-live-demo-url">Live Demo Link:</label>
-                    <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here">
-                    <span aria-hidden="true">(e.g. https://www.autoreadme.dev)</span>
-                    <label for="repo-installation-instructions">Installation Instructions</label>
-                    <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable)."></textarea>
-                    <label for="repo-license">License</label> <a href="https://choosealicense.com" target="_blank" title="Need help picking a license? Visit choosealicense.com"><i class="fas fa-info-circle" aria-hidden="true"></i></a>
-                    <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here">
-                    <span aria-hidden="true">(e.g. GNU GPLv3)</span>
-                </fieldset>
-                <fieldset>
-                    <legend>Authors</legend>
-                    <p>Enter GitHub Usernames</p>
-                    <input type="text" name="author-username-1" id="author-username-1" aria-label="Author 1 Username" placeholder="Enter Author Username Here"><button type="button">+</button><button type="button">-</button>
-                    <input type="text" name="author-username-2" id="author-username-2" aria-label="Author 2 Username" placeholder="Enter Author Username Here"><button type="button">+</button>
-                </fieldset>
-                <fieldset>
-                    <legend>Screenshots</legend>
-                    <p>Select which screenshots (if any) you wish to display in your readme. Screenshots will be generated using the Live Demo URL listed above.</p>
-                    <input type="checkbox" name="screenshot-mobile" id="screenshot-mobile" aria-label="Include Mobile Screenshots.">
-                    <label for="screenshot-mobile">Mobile</label>
-                    <label for="screenshot-mobile-alt-text">Screenshot Alt Text</label>
-                    <input type="text" name="screenshot-mobile-alt-text" id="screenshot-mobile-alt-text" placeholder="Enter mobile screenshot alt text here.">
-                    <input type="checkbox" name="screenshot-desktop" id="screenshot-desktop" aria-label="Include Desktop Screenshots.">
-                    <label for="screenshot-desktop">Desktop</label>
-                    <label for="screenshot-desktop-alt-text">Screenshot Alt Text</label>
-                    <input type="text" name="screenshot-desktop-alt-text" id="screenshot-desktop-alt-text" placeholder="Enter desktop screenshot alt text here.">
-                </fieldset>
-                <button type="submit">Generate ReadMe</button>
-            </form>
+                <form role="form">
+                    <fieldset>
+                        <legend>Repo Information</legend>
+                        <label for="github-repo-url">Github Repo URL:</label>
+                        <input type="url" name="repo-url" id="github-repo-url" placeholder="Enter your GitHub repo URL here." required>
+                        <span aria-hidden="true">(e.g. https://github.com/jskelton36/autoreadme)</span>
+                        <button type="submit">Get Repo Info</button>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Readme Options</legend>
+                        <label for="repo-project-name">Project Name:</label>
+                        <input type="text" name="repo-project-name" id="repo-project-name" required>
+                        <label for="repo-project-description">Project Description</label>
+                        <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here."></textarea>
+                        <label for="repo-live-demo-url">Live Demo Link:</label>
+                        <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here">
+                        <span aria-hidden="true">(e.g. https://www.autoreadme.dev)</span>
+                        <label for="repo-installation-instructions">Installation Instructions</label>
+                        <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable)."></textarea>
+                        <label for="repo-license">License</label> <a href="https://choosealicense.com" target="_blank" title="Need help picking a license? Visit choosealicense.com"><i class="fas fa-info-circle" aria-hidden="true"></i></a>
+                        <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here">
+                        <span aria-hidden="true">(e.g. GNU GPLv3)</span>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Authors</legend>
+                        <p>Enter GitHub Usernames</p>
+                        <input type="text" name="author-username-1" id="author-username-1" aria-label="Author 1 Username" placeholder="Enter Author Username Here"><button type="button">+</button><button type="button">-</button>
+                        <input type="text" name="author-username-2" id="author-username-2" aria-label="Author 2 Username" placeholder="Enter Author Username Here"><button type="button">+</button>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Screenshots</legend>
+                        <p>Select which screenshots (if any) you wish to display in your readme. Screenshots will be generated using the Live Demo URL listed above.</p>
+                        <input type="checkbox" name="screenshot-mobile" id="screenshot-mobile" aria-label="Include Mobile Screenshots.">
+                        <label for="screenshot-mobile">Mobile</label>
+                        <label for="screenshot-mobile-alt-text">Screenshot Alt Text</label>
+                        <input type="text" name="screenshot-mobile-alt-text" id="screenshot-mobile-alt-text" placeholder="Enter mobile screenshot alt text here.">
+                        <input type="checkbox" name="screenshot-desktop" id="screenshot-desktop" aria-label="Include Desktop Screenshots.">
+                        <label for="screenshot-desktop">Desktop</label>
+                        <label for="screenshot-desktop-alt-text">Screenshot Alt Text</label>
+                        <input type="text" name="screenshot-desktop-alt-text" id="screenshot-desktop-alt-text" placeholder="Enter desktop screenshot alt text here.">
+                    </fieldset>
+                    <button type="submit">Generate ReadMe</button>
+                    <fieldset>
+                        <label for="output-markdown-syntax">Generated Markdown Syntax</label>
+                        <textarea name="output-markdown-syntax" id="output-markdown-syntax" cols="30" rows="10" placeholder="Output goes here"></textarea>
+                        <button type="button" name="output-download-file"><i class="fas fa-file-download" aria-hidden="true"></i> Download File</button>
+                        <label for="output-unique-url">Unique Link</label>
+                        <input type="url" name="output-unique-url" id="output-unique-url" value="https://www.autoreadme.dev/">
+                    </fieldset>
+                    <a href="#"><i class="fas fa-arrow-left" aria-hidden="true"></i> Edit Options</a>
+                </form>
             </div>
         </main>
         <footer>
