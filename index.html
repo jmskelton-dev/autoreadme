@@ -24,7 +24,7 @@
                         <label for="github-repo-url">Github Repo URL:</label>
                         <input type="url" name="repo-url" id="github-repo-url" placeholder="Enter your GitHub repo URL here." required><br>
                         <span aria-hidden="true">(e.g. https://github.com/jskelton36/autoreadme)</span><br>
-                        <button type="submit">Get Repo Info</button>
+                        <button type="submit" class="btn btn-primary">Get Repo Info</button>
                     </fieldset>
                     <fieldset>
                         <legend>Readme Options</legend>
@@ -44,8 +44,8 @@
                     <fieldset>
                         <legend>Authors</legend>
                         <p>Enter GitHub Usernames</p>
-                        <input type="text" name="author-username-1" id="author-username-1" aria-label="Author 1 Username" placeholder="Enter Author Username Here"><button type="button">+</button><button type="button">-</button><br>
-                        <input type="text" name="author-username-2" id="author-username-2" aria-label="Author 2 Username" placeholder="Enter Author Username Here"><button type="button">+</button>
+                        <input type="text" name="author-username-1" id="author-username-1" aria-label="Author 1 Username" placeholder="Enter Author Username Here"><button type="button" class="btn btn-add">+</button><button type="button" class="btn btn-delete">-</button><br>
+                        <input type="text" name="author-username-2" id="author-username-2" aria-label="Author 2 Username" placeholder="Enter Author Username Here"><button type="button" class="btn btn-add">+</button>
                     </fieldset>
                     <fieldset>
                         <legend>Screenshots</legend>
@@ -59,11 +59,11 @@
                         <label for="screenshot-desktop-alt-text">Screenshot Alt Text</label>
                         <input type="text" name="screenshot-desktop-alt-text" id="screenshot-desktop-alt-text" placeholder="Enter desktop screenshot alt text here.">
                     </fieldset>
-                    <button type="submit">Generate ReadMe</button>
+                    <button type="submit" class="btn btn-primary">Generate ReadMe</button>
                     <fieldset>
                         <label for="output-markdown-syntax">Generated Markdown Syntax</label><br>
                         <textarea name="output-markdown-syntax" id="output-markdown-syntax" cols="30" rows="10" placeholder="Output goes here"></textarea><br>
-                        <button type="button" name="output-download-file"><i class="fas fa-file-download" aria-hidden="true"></i> Download File</button><br>
+                        <button type="button" name="output-download-file" class="btn btn-download"><i class="fas fa-file-download" aria-hidden="true"></i> Download File</button><br>
                         <label for="output-unique-url">Unique Link</label><br>
                         <input type="url" name="output-unique-url" id="output-unique-url" value="https://www.autoreadme.dev/">
                     </fieldset>
