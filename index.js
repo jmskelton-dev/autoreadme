@@ -2,7 +2,7 @@
 
 /*  Gets user input from text input field. */
 function getUserRepoInput() {
-  return $('#github-repo-url').val();
+  return $('#repo-url').val();
 }
 
 function parseUserInput (url) {
@@ -53,10 +53,11 @@ function gitReleaseDetails (responseJson) {
 }
 
 function watchForm() {
-    $('form').on('submit', '#repoInfo', function(event) {
+    $('#repoURLForm').on('submit', function(event) {
         event.preventDefault();
-        const gitRepo = $('#repo-url').val();
-        getRepoDetails(gitRepo);
+        const gitRepo = getUserRepoInput();
+        const githubUserRepo = parseUserInput(gitRepo)
+        getRepoDetails(githubUserRepo);
     });
 }
 

@@ -18,16 +18,16 @@
         <main class="container">
             <section>Landing Text</section>
             <div class="mainForm">
-                <form role="form">
+                <form role="form" id="repoURLForm">
                     <fieldset>
                         <legend>Repo Information</legend>
-                        <label for="github-repo-url">Github Repo URL:</label>
+                        <label for="repo-url">Github Repo URL:</label>
                         <input type="text" name="repo-url" id="repo-url" placeholder="Enter your GitHub repo URL here." required><br>
                         <span aria-hidden="true">(e.g. https://github.com/jskelton36/autoreadme)</span><br>
                         <button type="submit" id="repoInfo" class="btn btn-primary">Get Repo Info</button>
                     </fieldset>
                 </form>
-                <form role="form">
+                <form role="form" id="readmeOptionsForm">
                     <fieldset>
                         <legend>Readme Options</legend>
                         <label for="repo-project-name">Project Name:</label>
@@ -63,7 +63,7 @@
                     </fieldset>
                     <button type="submit" class="btn btn-primary">Generate ReadMe</button>
                 </form>
-                <form role="form">
+                <form role="form" id="readmeOutputForm">
                     <fieldset>
                         <label for="output-markdown-syntax">Generated Markdown Syntax</label><br>
                         <textarea name="output-markdown-syntax" id="output-markdown-syntax" cols="30" rows="10" placeholder="Output goes here"></textarea><br>
