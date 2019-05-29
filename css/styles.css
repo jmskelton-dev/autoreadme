@@ -29,17 +29,21 @@ main {
   margin-right: 3%;
   margin-left: 3%;
 }
+.container {
+  margin-top: 20px;
+}
 .mainForm {
   /* display: flex;
   align-self: center; */
   width: 100%;
   max-width: 700px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 section {
   /* display: flex;
   align-self: center; */
   height: 50px;
-  margin-top: 20px;
   font-size: 1.75em;
   font-weight: bolder;
 }
