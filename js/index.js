@@ -76,6 +76,7 @@
   }
 
 /* API Calls */
+  /* Get details for repo to put in Readme Options input fields */
   function getRepoDetails (gitRepo) {
     const queryURL = `https://api.github.com/repos/${gitRepo}`
     
@@ -86,12 +87,17 @@
       }
       throw new Error(response.statusText);
     })
-    .then(responseJson => gitRepoDetails(responseJson))
+    .then(responseJson => {
+      storeRepoDetails(responseJson);
+      STORE.view = 'options';
+      render();
+    })
     .catch(err => {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
     });
   }
 
+  /* Get release details for repo to put in Readme Output */
   function getRepoReleases (gitRepo) {
     const queryURL = `https://api.github.com/repos/${gitRepo}/releases`
     
@@ -121,8 +127,17 @@
     return githubUserRepo;
   }
 
-  function gitRepoDetails (responseJson) {
-    console.log(responseJson); 
+  function storeRepoDetails (responseJson) {
+
+    STORE.name = responseJson.name;
+    STORE.description = responseJson.description;
+    STORE.authors = [responseJson.owner.login];
+
+    //Check if has GitHub Pages
+    responseJson.has_pages ? STORE.sites = `https://${responseJson.owner.login}.github.io/${responseJson.name}/` : ''; 
+
+    //Check if has a license specified
+    responseJson.license === null ? '' : STORE.license = responseJson.license.name;
   }
 
   function gitReleaseDetails (responseJson) {
@@ -167,8 +182,6 @@
           const gitRepo = getUserRepoInput();
           const githubUserRepo = parseUserInput(gitRepo);
           getRepoDetails(githubUserRepo);
-          STORE.view = 'options';
-          render();
       });
   }
 
