@@ -1,3 +1,15 @@
+'use strict';
+
+/*  Gets user input from text input field. */
+function getUserRepoInput() {
+  return $('#github-repo-url').val();
+}
+
+function parseUserInput (url) {
+  let githubUserRepo = url.slice(19).split('/').slice(0, 2).join('/');
+  return githubUserRepo;
+}
+
 function getRepoDetails (gitRepo) {
     const queryURL = `https://api.github.com/repos/${gitRepo}`
     
