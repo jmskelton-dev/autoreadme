@@ -123,8 +123,23 @@
 
   /* Parses user input to find github repo URL */
   function parseUserInput (url) {
-    let githubUserRepo = url.slice(19).split('/').slice(0, 2).join('/');
-    return githubUserRepo;
+    let sliceIndex = 0;
+    let gitHub = 'github.com';
+    let gitPages = '.github.io';
+
+    if (url.includes(gitHub)) {
+      sliceIndex = url.indexOf(gitHub);
+      return url.slice(sliceIndex+11).split('/').slice(0, 2).join('/');
+
+    } else if (url.includes(gitPages)) {
+      sliceIndex = url.indexOf('.github.io');
+      let userName = url.slice(0,sliceIndex).split('/').pop();
+      let repoName = url.slice(sliceIndex+11).split('/').shift();
+      return `${userName}/${repoName}`;
+
+    } else {
+      throw new Error('Not a valid GitHub Repo URL');
+    }
   }
 
   function storeRepoDetails (responseJson) {
@@ -180,8 +195,14 @@
       $('#repoURLForm').on('submit', function(event) {
           event.preventDefault();
           const gitRepo = getUserRepoInput();
-          const githubUserRepo = parseUserInput(gitRepo);
-          getRepoDetails(githubUserRepo);
+          
+          try {
+            const githubUserRepo = parseUserInput(gitRepo);
+            getRepoDetails(githubUserRepo);
+          } catch (e) {
+            $('#js-error-message').text(`Something went wrong: ${e.message}`);
+          }
+
       });
   }
 
