@@ -93,7 +93,8 @@
       render();
     })
     .catch(err => {
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
+      $('#js-error-message').removeClass('hidden');
     });
   }
 
@@ -110,7 +111,8 @@
     })
     .then(responseJson => gitReleaseDetails(responseJson))
     .catch(err => {
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
+      $('#js-error-message').removeClass('hidden');
     });
   }
 
@@ -194,13 +196,15 @@
   function watchForm() {
       $('#repoURLForm').on('submit', function(event) {
           event.preventDefault();
+          $('#js-error-message').addClass('hidden');
           const gitRepo = getUserRepoInput();
           
           try {
             const githubUserRepo = parseUserInput(gitRepo);
             getRepoDetails(githubUserRepo);
           } catch (e) {
-            $('#js-error-message').text(`Something went wrong: ${e.message}`);
+            $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${e.message}`);
+            $('#js-error-message').removeClass('hidden');
           }
 
       });
