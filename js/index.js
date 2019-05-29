@@ -1,16 +1,9 @@
 'use strict';
 
-/*  Gets user input from text input field. */
-function getUserRepoInput() {
-  return $('#repo-url').val();
-}
+/* Template Generators */
 
-function parseUserInput (url) {
-  let githubUserRepo = url.slice(19).split('/').slice(0, 2).join('/');
-  return githubUserRepo;
-}
-
-function getRepoDetails (gitRepo) {
+/* API Calls */
+  function getRepoDetails (gitRepo) {
     const queryURL = `https://api.github.com/repos/${gitRepo}`
     
     fetch(queryURL)
@@ -24,14 +17,9 @@ function getRepoDetails (gitRepo) {
     .catch(err => {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
     });
-}
+  }
 
-function gitRepoDetails (responseJson) {
-    console.log(responseJson);
-
-}
-
-function getRepoReleases (gitRepo) {
+  function getRepoReleases (gitRepo) {
     const queryURL = `https://api.github.com/repos/${gitRepo}/releases`
     
     fetch(queryURL)
@@ -45,20 +33,41 @@ function getRepoReleases (gitRepo) {
     .catch(err => {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
     });
-}
+  }
 
-function gitReleaseDetails (responseJson) {
+/* Get Functions */
+
+/*  Gets user input from text input field. */
+  function getUserRepoInput() {
+    return $('#repo-url').val();
+  }
+
+  function parseUserInput (url) {
+    let githubUserRepo = url.slice(19).split('/').slice(0, 2).join('/');
+    return githubUserRepo;
+  }
+
+  function gitRepoDetails (responseJson) {
+    console.log(responseJson); 
+  }
+
+  function gitReleaseDetails (responseJson) {
     console.log(responseJson);
+    
+  }
 
-}
+/* Rendering Functions */
 
-function watchForm() {
-    $('#repoURLForm').on('submit', function(event) {
-        event.preventDefault();
-        const gitRepo = getUserRepoInput();
-        const githubUserRepo = parseUserInput(gitRepo)
-        getRepoDetails(githubUserRepo);
-    });
-}
+/* Event Listeners */
+  /* Watches for submit of User GitHub Repo URL */
+  function watchForm() {
+      $('#repoURLForm').on('submit', function(event) {
+          event.preventDefault();
+          const gitRepo = getUserRepoInput();
+          const githubUserRepo = parseUserInput(gitRepo)
+          getRepoDetails(githubUserRepo);
+      });
+  }
 
-$(watchForm);
+  /* Run on Initialize */
+  $(watchForm);
