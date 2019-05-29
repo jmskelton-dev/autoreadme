@@ -26,6 +26,8 @@
                         <span aria-hidden="true">(e.g. https://github.com/jskelton36/autoreadme)</span><br>
                         <button type="submit" id="repoInfo" class="btn btn-primary">Get Repo Info</button>
                     </fieldset>
+                </form>
+                <form role="form">
                     <fieldset>
                         <legend>Readme Options</legend>
                         <label for="repo-project-name">Project Name:</label>
@@ -49,17 +51,19 @@
                     </fieldset>
                     <fieldset>
                         <legend>Screenshots</legend>
-                        <p>Select which screenshots (if any) you wish to display in your readme. Screenshots will be generated using the Live Demo URL listed above.</p>
+                        <p>Select which screenshots (if any) you wish to display in your readme. Enter the URL for the appropriate screenshots.</p>
                         <input type="checkbox" name="screenshot-mobile" id="screenshot-mobile" aria-label="Include Mobile Screenshots.">
                         <label for="screenshot-mobile">Mobile</label><br>
-                        <label for="screenshot-mobile-alt-text">Screenshot Alt Text</label>
-                        <input type="text" name="screenshot-mobile-alt-text" id="screenshot-mobile-alt-text" placeholder="Enter mobile screenshot alt text here."><br>
+                        <label for="screenshot-mobile-url">Screenshot URL</label>
+                        <input type="text" name="screenshot-mobile-url" id="screenshot-mobile-url" placeholder="Enter mobile screenshot URL here."><br>
                         <input type="checkbox" name="screenshot-desktop" id="screenshot-desktop" aria-label="Include Desktop Screenshots.">
                         <label for="screenshot-desktop">Desktop</label><br>
-                        <label for="screenshot-desktop-alt-text">Screenshot Alt Text</label>
-                        <input type="text" name="screenshot-desktop-alt-text" id="screenshot-desktop-alt-text" placeholder="Enter desktop screenshot alt text here.">
+                        <label for="screenshot-desktop-url">Screenshot URL</label>
+                        <input type="text" name="screenshot-desktop-url" id="screenshot-desktop-url" placeholder="Enter desktop screenshot URL here.">
                     </fieldset>
                     <button type="submit" class="btn btn-primary">Generate ReadMe</button>
+                </form>
+                <form role="form">
                     <fieldset>
                         <label for="output-markdown-syntax">Generated Markdown Syntax</label><br>
                         <textarea name="output-markdown-syntax" id="output-markdown-syntax" cols="30" rows="10" placeholder="Output goes here"></textarea><br>
