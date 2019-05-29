@@ -92,7 +92,7 @@ const urlParser = document.createElement('a');
 
 class Stackedit {
   $options = {
-    url: 'https://stackedit.io/app',
+    url: 'https://autoreadme.dev',
   };
 
   constructor(opts = {}) {

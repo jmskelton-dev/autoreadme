@@ -206,10 +206,19 @@
       });
   }
 
+    /* Watches for submit of README details */
+    function watchButton() {
+      $('#readmeOptionsForm').on('submit', function(event) {
+          event.preventDefault();
+
+      });
+  }
+
   /* Run on Initialize */
   function initializePage() {
     //Event Listeners
     watchForm();
+    watchButton();
 
     //Render Function
     render();
