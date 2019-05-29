@@ -39,3 +39,13 @@ function gitReleaseDetails (responseJson) {
     console.log(responseJson);
 
 }
+
+function watchForm() {
+    $('form').on('submit', '#repoInfo', function(event) {
+        event.preventDefault();
+        const gitRepo = $('#repo-url').val();
+        getRepoDetails(gitRepo);
+    });
+}
+
+$(watchForm);
