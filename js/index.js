@@ -14,6 +14,18 @@
     return authorInputs.join("");
   }
 
+  /* Generate markdown for repo author */
+  function generateAuthorMarkdownItem(author, index) {
+    const currentAuthor = index + 1;
+    return `${currentAuthor}: ${author}`;
+  }
+
+  /* Generate markdown via generateAuthorInputItem */
+  function generateAuthorMarkdown(authors) {
+    const authorInputs = authors.map((author, index) => generateAuthorMarkdownItem(author, index));
+    return authorInputs.join("");
+  }
+
   /* Returns HTML to create Readme Options Page. */
   function generateReadmeOptions() {
     
@@ -87,25 +99,25 @@
 
   /* Returns Markdown to create Markdown box. */
   function generateMarkdown() {
-    console.log(`markdown fired`);
-    const authors = generateAuthorInputs(STORE.authors);
-    $('#output-markdown-syntax').val(`${STORE.name === null ? `` : `#${STORE.name}"`}
+    console.log(`generateMarkdown fired`);
+    const markdownAuthors = generateAuthorMarkdown(STORE.authors);
+    $('#output-markdown-syntax').val(`${STORE.name === null ? `` : `#${STORE.name}`}
 
-    ${STORE.description === null ? `` : `${STORE.description}`}
+${STORE.description === null ? `` : `${STORE.description}`}
 
-    ${STORE.sites === null ? `` : `[Live Demo](${STORE.sites})`}
+${STORE.screenshots[0].url === null ? `` : `![Mobile Screenshot](${STORE.screenshots[0].url})`}
 
-    ${STORE.instructions === null ? `` : `##Installation Instructions`}
+${STORE.screenshots[0].url === null ? `` : `![Desktop Screenshot](${STORE.screenshots[1].url})`}
 
-    ${STORE.instructions === null ? `` : `${STORE.instructions}`}
+${STORE.instructions === null ? `` : `##Installation Instructions`}
+
+${STORE.instructions === null ? `` : `${STORE.instructions}`}
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
-${authors}
+${markdownAuthors}
 
 ${STORE.license === null ? `` : `##License`}
 
@@ -178,6 +190,18 @@ ${STORE.license === null ? `` : `${STORE.license}`}
   /*  Gets user input from text input field. */
   function getUserRepoInput() {
     return $('#repo-url').val();
+  }
+
+  /* Get user input from Form and update STORAGE. */
+  function updateFromInput () {
+    console.log(`updateFromInput fired`)
+    STORE.name = $('#repo-project-name').val();
+    STORE.description = $('#repo-project-description').val();
+    STORE.sites = $('repo-live-demo-url').val();
+    STORE.instructions = $('#repo-installation-instructions').val();
+    STORE.license = $('#repo-license').val();
+    STORE.screenshots[0].url = $('#screenshot-mobile-url').val();
+    STORE.screenshots[1].url = $('#screenshot-desktop-url').val();
   }
 
   /* Parses user input to find github repo URL */
@@ -272,6 +296,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
       $('#readmeOptionsForm').on('submit', function(event) {
           event.preventDefault();
           STORE.view = 'output';
+          updateFromInput();
           generateMarkdown();
           render();
       });
