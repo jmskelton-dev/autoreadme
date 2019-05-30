@@ -304,7 +304,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
 
   /* Watches for submit of Edit Options */
   function watchEditButton() {
-    $('#editOptions').on('submit', function(event) {
+    $('#readmeOutputForm').on('submit', function(event) {
         event.preventDefault();
         STORE.view = 'options';
         render();
@@ -316,6 +316,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     //Event Listeners
     watchForm();
     watchButton();
+    watchEditButton();
 
     //Render Function
     render();
