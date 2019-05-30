@@ -291,15 +291,24 @@ ${STORE.license === null ? `` : `${STORE.license}`}
       });
   }
 
-    /* Watches for submit of README details */
-    function watchButton() {
-      $('#readmeOptionsForm').on('submit', function(event) {
-          event.preventDefault();
-          STORE.view = 'output';
-          updateFromInput();
-          generateMarkdown();
-          render();
-      });
+  /* Watches for submit of README details */
+  function watchButton() {
+    $('#readmeOptionsForm').on('submit', function(event) {
+        event.preventDefault();
+        STORE.view = 'output';
+        updateFromInput();
+        generateMarkdown();
+        render();
+    });
+  }
+
+  /* Watches for submit of Edit Options */
+  function watchEditButton() {
+    $('#editOptions').on('submit', function(event) {
+        event.preventDefault();
+        STORE.view = 'options';
+        render();
+    });
   }
 
   /* Run on Initialize */
