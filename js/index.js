@@ -101,13 +101,13 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
-    return `${STORE.name === null ? `` : `#${STORE.name}`}
+    return `${STORE.name === null ? `` : `##${STORE.name}`}
 
 ${STORE.description === null ? `` : `${STORE.description}`}
 
 ${STORE.screenshots[0].url === null ? `` : `![Mobile Screenshot](${STORE.screenshots[0].url})`}
 
-${STORE.screenshots[0].url === null ? `` : `![Desktop Screenshot](${STORE.screenshots[1].url})`}
+${STORE.screenshots[1].url === null ? `` : `![Desktop Screenshot](${STORE.screenshots[1].url})`}
 
 ${STORE.instructions === null ? `` : `##Installation Instructions`}
 
@@ -197,7 +197,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     console.log(`updateFromInput fired`)
     STORE.name = $('#repo-project-name').val();
     STORE.description = $('#repo-project-description').val();
-    STORE.sites = $('repo-live-demo-url').val();
+    STORE.sites = $('#repo-live-demo-url').val();
     STORE.instructions = $('#repo-installation-instructions').val();
     STORE.license = $('#repo-license').val();
     STORE.screenshots[0].url = $('#screenshot-mobile-url').val();
@@ -296,13 +296,13 @@ ${STORE.license === null ? `` : `${STORE.license}`}
         event.preventDefault();
         STORE.view = 'output';
         updateFromInput();
-        const el = generateMarkdown();
         render();
+        const el = generateMarkdown();
         const stackedit = new Stackedit();
         console.log(el);
         // Open the iframe
         stackedit.openFile({
-          name: 'Filename', // with an optional filename
+          name: '', // with an optional filename
           content: {
             text: el // and the Markdown content.
           }
