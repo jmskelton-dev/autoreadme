@@ -39,13 +39,22 @@
                 </form>
                 <form role="form" id="readmeOptionsForm" class="form">
                 </form>
-                <form role="form" id="readmeOutputForm">
+                <form role="form" id="readmeOutputForm" class="form">
                     <fieldset>
-                        <label for="output-markdown-syntax">Generated Markdown Syntax</label><br>
-                        <textarea name="output-markdown-syntax" id="output-markdown-syntax" cols="30" rows="10" placeholder="Output goes here"></textarea><br>
-                        <button type="button" name="output-download-file" class="btn btn-download"><i class="fas fa-file-download" aria-hidden="true"></i> Download File</button><br>
-                        <label for="output-unique-url">Unique Link</label><br>
-                        <input type="url" name="output-unique-url" id="output-unique-url" value="https://www.autoreadme.dev/">
+                        <legend><span class="number">3</span> Output</legend>
+                        <ul>
+                            <li>
+                                <label for="output-markdown-syntax">Generated Markdown Syntax</label><br>
+                                <textarea name="output-markdown-syntax" id="output-markdown-syntax" cols="30" rows="10" placeholder="Output goes here" class="output"></textarea><br>
+                            </li>
+                            <li class="button">
+                                <button type="button" name="output-download-file" class="btn btn-download"><i class="fas fa-file-download" aria-hidden="true"></i> Download File</button><br>
+                            </li>
+                            <li>
+                                <label for="output-unique-url">Unique Link</label><br>
+                                <input type="url" name="output-unique-url" id="output-unique-url" value="https://www.autoreadme.dev/">
+                            </li>
+                        </ul>
                     </fieldset>
                     <button type="submit" id="editOptions" class="btn btn-primary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Edit Options</button>
                 </form>

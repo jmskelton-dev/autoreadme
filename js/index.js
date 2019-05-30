@@ -5,7 +5,7 @@
   /* Generate individual input field for repo author */
   function generateAuthorInputItem(author, index) {
     const currentAuthor = index + 1;
-    return `<input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-add">+</button><button type="button" class="btn btn-delete">-</button><br>`;
+    return `<input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-add">Add</button><button type="button" class="btn btn-small btn-delete">Delete</button><br>`;
   }
 
   /* Generate all HTML inputs via generateAuthorInputItem */
