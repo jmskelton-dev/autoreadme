@@ -101,7 +101,7 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
-    $('#output-markdown-syntax').val(`${STORE.name === null ? `` : `#${STORE.name}`}
+    return `${STORE.name === null ? `` : `#${STORE.name}`}
 
 ${STORE.description === null ? `` : `${STORE.description}`}
 
@@ -122,7 +122,7 @@ ${markdownAuthors}
 ${STORE.license === null ? `` : `##License`}
 
 ${STORE.license === null ? `` : `${STORE.license}`}
-    `);
+    `;
   }
 
 /* Data Storage */
@@ -297,8 +297,21 @@ ${STORE.license === null ? `` : `${STORE.license}`}
         event.preventDefault();
         STORE.view = 'output';
         updateFromInput();
-        generateMarkdown();
-        render();
+        const el = generateMarkdown();
+        const stackedit = new Stackedit();
+        console.log(el);
+        // Open the iframe
+        stackedit.openFile({
+          name: 'Filename', // with an optional filename
+          content: {
+            text: el // and the Markdown content.
+          }
+        });
+      
+        // Listen to StackEdit events and apply the changes to the textarea.
+        stackedit.on('fileChange', (file) => {
+          el.value = file.content.text;
+        });
     });
   }
 
