@@ -2,6 +2,7 @@
   --gray-dark: #24292e;
   --gray-medium: #586069;
   --form-border: #e1e4e8;
+  --box-border: #d1d5da;
   --bg-gray: #f6f8fa;
   --bg-gray-light: #fafbfc;
   /*  *000000 - Black
@@ -186,7 +187,7 @@ header {
     /*  */
     display: block;
     padding: 0px;
-    border: 1px solid var(--form-border);
+    border: 1px solid var(--box-border);
     margin-bottom: 30px;
     border-radius: 5px;
   }
@@ -243,12 +244,18 @@ header {
   } 
 
   .form li > span {
-    background-color: #f3f3f3;
+    background-color: var(--bg-gray);
     display: block;
     padding: 9px;
+    border-top: 1px solid var(--box-border);
     text-align: center;
     color: #6a6a6a;
     font-size: 12px;
+    /* border-radius: 0px 0px 5px 5px; */
+  }
+
+  .form li > :last-child {
+    border-radius: 0px 0px 5px 5px;
   }
 
   .form textarea {
