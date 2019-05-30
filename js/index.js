@@ -20,40 +20,69 @@
     const authors = generateAuthorInputs(STORE.authors);
 
     return `<fieldset>
-    <legend>Readme Options</legend>
-    <label for="repo-project-name">Project Name:</label>
-    <input type="text" name="repo-project-name" id="repo-project-name" ${STORE.name === null ? `` : `value="${STORE.name}"`} required><br>
-    <label for="repo-project-description">Project Description</label><br>
-    <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here.">${STORE.description === null ? `` : `${STORE.description}`}</textarea><br>
-    <label for="repo-live-demo-url">Live Demo Link:</label>
-    <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here" ${STORE.sites === null ? `` : `value="${STORE.sites}"`}><br>
-    <span aria-hidden="true">(e.g. https://www.autoreadme.dev)</span><br>
-    <label for="repo-installation-instructions">Installation Instructions</label><br>
-    <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable).">${STORE.instructions === null ? `` : `${STORE.instructions}`}</textarea><br>
-    <label for="repo-license">License</label> <a href="https://choosealicense.com" target="_blank" title="Need help picking a license? Visit choosealicense.com"><i class="fas fa-info-circle" aria-hidden="true"></i></a>
-    <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here" ${STORE.license === null ? `` : `value="${STORE.license}"`}><br>
-    <span aria-hidden="true">(e.g. GNU GPLv3)</span>
-</fieldset>
-<fieldset>
-    <legend>Authors</legend>
-    <p>Enter GitHub Usernames</p>
-    <div id="authorUsernames">
-      ${authors}
-    </div>
-</fieldset>
-<fieldset>
-    <legend>Screenshots</legend>
-    <p>Select which screenshots (if any) you wish to display in your readme. Enter the URL for the appropriate screenshots.</p>
-    <input type="checkbox" name="screenshot-mobile" id="screenshot-mobile" aria-label="Include Mobile Screenshots." ${STORE.screenshots[0].display ? `checked`: ``}>
-    <label for="screenshot-mobile">Mobile</label><br>
-    <label for="screenshot-mobile-url">Screenshot URL</label>
-    <input type="text" name="screenshot-mobile-url" id="screenshot-mobile-url" placeholder="Enter mobile screenshot URL here." ${STORE.screenshots[0].display ? `value="${STORE.screenshots[0].url}"`: ``}><br>
-    <input type="checkbox" name="screenshot-desktop" id="screenshot-desktop" aria-label="Include Desktop Screenshots." ${STORE.screenshots[1].display ? `checked`: ``}>
-    <label for="screenshot-desktop">Desktop</label><br>
-    <label for="screenshot-desktop-url">Screenshot URL</label>
-    <input type="text" name="screenshot-desktop-url" id="screenshot-desktop-url" placeholder="Enter desktop screenshot URL here."${STORE.screenshots[1].display ? `value="${STORE.screenshots[1].url}"`: ``}>
-</fieldset>
-<button type="submit" class="btn btn-primary">Generate ReadMe</button>`
+    <legend><span class="number">2</span> Project Details</legend>
+      <ul>
+        <li>
+          <label for="repo-project-name">Project Name:</label>
+          <input type="text" name="repo-project-name" id="repo-project-name" ${STORE.name === null ? `` : `value="${STORE.name}"`} required>
+        </li>
+        <li>
+          <label for="repo-project-description">Project Description</label>
+          <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here.">${STORE.description === null ? `` : `${STORE.description}`}</textarea>
+        </li>
+        <li>
+          <label for="repo-live-demo-url">Live Demo Link:</label>
+          <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here" ${STORE.sites === null ? `` : `value="${STORE.sites}"`}>
+          <span aria-hidden="true">(e.g. https://www.autoreadme.dev)</span>
+        </li>
+        <li>
+          <label for="repo-installation-instructions">Installation Instructions</label>
+          <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable).">${STORE.instructions === null ? `` : `${STORE.instructions}`}</textarea>
+        </li>
+        <li>
+          <label for="repo-license">License</label>
+          <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here" ${STORE.license === null ? `` : `value="${STORE.license}"`}>
+          <span>(e.g. GNU GPLv3) <a href="https://choosealicense.com" target="_blank" title="Need help picking a license? Visit choosealicense.com"><i class="fas fa-info-circle" aria-hidden="true"></i></a></span>
+        </li>
+      </ul>
+    </fieldset>
+    <fieldset>
+      <legend>Authors</legend>
+      <p>Enter GitHub Usernames</p>
+      <div id="authorUsernames">
+        ${authors}
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Screenshots</legend>
+      <p>Select which screenshots (if any) you wish to display in your readme. Enter the URL for the appropriate screenshots.</p>
+      <ul>
+        <li class="checkbox">
+          <input type="checkbox" name="screenshot-mobile" id="screenshot-mobile" aria-label="Include Mobile Screenshots." ${STORE.screenshots[0].display ? `checked`: ``}>
+          <label for="screenshot-mobile">Mobile</label>
+        </li>
+        <li>
+          <label for="screenshot-mobile-url">Screenshot URL</label>
+          <input type="text" name="screenshot-mobile-url" id="screenshot-mobile-url" placeholder="Enter mobile screenshot URL here." ${STORE.screenshots[0].display ? `value="${STORE.screenshots[0].url}"`: ``}>
+          <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
+        </li>
+        <li class="checkbox">
+          <input type="checkbox" name="screenshot-desktop" id="screenshot-desktop" aria-label="Include Desktop Screenshots." ${STORE.screenshots[1].display ? `checked`: ``}>
+          <label for="screenshot-desktop">Desktop</label>
+        </li>
+        <li>
+          <label for="screenshot-desktop-url">Screenshot URL</label>
+          <input type="text" name="screenshot-desktop-url" id="screenshot-desktop-url" placeholder="Enter desktop screenshot URL here."${STORE.screenshots[1].display ? `value="${STORE.screenshots[1].url}"`: ``}>
+          <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
+        </li>
+      </ul>
+    </fieldset>
+    <ul>
+      <li class="button">
+        <button type="submit" class="btn btn-primary">Generate ReadMe</button>
+      </li>
+    </ul>
+    `
   }
 
 /* Data Storage */

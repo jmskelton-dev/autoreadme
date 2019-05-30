@@ -1,52 +1,34 @@
 * {
   box-sizing: border-box;
 }
-h1 {
-font-family: 'Anonymous Pro', monospace;
-}
+
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: #f6f8fa;
 }
 
-button:hover {
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Anonymous Pro', monospace;
+}
+
+button {
   cursor: pointer;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #4f4f4f;
+  opacity: 1; /* Firefox */
 }
-.error-message {
-    color: red;
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #4f4f4f;
 }
-.hidden {
-  display: none;
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #4f4f4f;
 }
-fieldset {
-  border: 0;
-}
-main {
-  margin-right: 3%;
-  margin-left: 3%;
-}
-.container {
-  margin-top: 20px;
-}
-.mainForm {
-  /* display: flex;
-  align-self: center; */
-  width: 100%;
-  max-width: 700px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-section {
-  /* display: flex;
-  align-self: center; */
-  height: 50px;
-  font-size: 1.75em;
-  font-weight: bolder;
-}
+
+/* Header */
 header {
   display: flex;
   align-self: stretch;
@@ -55,7 +37,218 @@ header {
   color: #fff;
   background-color: #24292e;
   padding-left: 20px;
+  padding-right: 20px;
 }
+
+/* Main Content */
+  
+  .hidden {
+  display: none;
+  }
+
+  /* Containers */
+  main {
+    margin-right: 3%;
+    margin-left: 3%;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  section, .alert, .mainForm {
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .alert {
+    margin: 15px auto;
+    padding: 12px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+
+  .error-message {
+    color: white;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  section {
+    min-height: 50px; 
+  }
+
+  .intro {
+    margin-bottom: 15px;
+  }
+
+  .intro h2 {
+    font-size: 1.75em;
+    font-weight: bolder;
+  }
+
+  section *:first-child {
+    margin-top: 0px;
+  }
+
+  section *:last-child {
+    margin-bottom: 0px;
+  }
+
+  /* Form*/
+
+  .form {
+    /*  */
+    margin: 0px auto 20px;
+    background: #fff;
+    border-radius: 2px;
+    padding: 20px;
+  }
+
+  .form fieldset {
+    /*  */
+    border: none;
+  }
+
+  .form legend {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .form ul {
+    /*  */
+    list-style: none;
+  	padding: 0px;
+	  margin: 0px;
+  }
+
+  .form li {
+    /*  */
+    display: block;
+    padding: 0px;
+    border: 1px solid #cccccc;
+    margin-bottom: 30px;
+    border-radius: 3px;
+  }
+
+  .form li.button{
+    /*  */
+    border: none;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+
+  .form li > label {
+    display: inline-block;
+    position: relative;
+    top: -10px;
+    margin-left: 9px;
+    background: #ffffff;
+    height: 20px;
+    padding: 2px 5px;
+    color: #0366d6;
+    font-size: 16px;  
+  }
+
+  .form .number {
+    background: #24292e;
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 5px;
+    text-align: center;
+    border-radius: 15px;
+  }
+
+  .form input[type="text"], .form input[type="url"], .form textarea {
+    width: 100%;
+    display: block;
+    border: none;
+    color: black;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 9px;
+  }
+  
+  .form input[type="text"]:focus, .form input[type="url"]:focus, .form textarea:focus {
+    background-color: rgba(246,248,250,0.25);
+    color: black;
+    outline: none;
+    box-shadow: 0 -2px 3px rgba(0,0,0,0.075) inset;
+    -webkit-box-shadow: 0 -2px 3px rgba(0,0,0,0.075) inset;
+  } 
+
+  .form li > span {
+    background-color: #f3f3f3;
+    display: block;
+    padding: 9px;
+    text-align: center;
+    color: #6a6a6a;
+    font-size: 12px;
+  }
+
+  .form textarea {
+    resize: vertical;
+    min-height: 50px;
+    line-height: 22px;
+  }
+  
+
+  .btn {
+    border-radius: .25em;
+    background-color: #eff3f6;
+    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    border: 1px solid rgba(27,31,35,.2);
+    padding: 19px 39px 18px 39px;
+    color: #24292e;
+    margin: 0 auto 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+   
+  .btn:hover {
+    background-color: black;
+    background-image: linear-gradient(-180deg,#161616,#0E0F0F 90%);
+    color: white;
+  }
+/*
+  .btn-primary, .btn-add, .btn-delete, .btn-download {
+    padding: 10px;
+  }
+
+  .btn-primary, .btn-add {
+    background: #28a745;
+    background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
+    color: white;
+  }
+
+  .btn-add, .btn-delete {
+    border-radius: 50%;
+    padding: 4px;
+    min-width: 30px;
+    min-height: 30px;
+  }
+
+  .btn-delete {
+    background: #A52727;
+    background-image: linear-gradient(-180deg,#D13434,#A52727 90%);
+    color: white;
+  } */
+
+
+
+/* Footer */
+
 footer {
   display: flex;
   align-items:center;
@@ -64,55 +257,11 @@ footer {
   padding-top: 20px; 
 }
 
-button, input, textarea {
-  border-radius: .25em;
-  margin: 5px;
-}
 
-label {
-  display: inline-block;
-  width: 30%;
+/*
+  Media: If desktop, 
 
-}
-
-input, textarea {
-  background-color: #fafbfc;
-  border: 1px solid #d1d5da;
-  color: #24292e;
-  line-height: 20px;
-  min-height: 34px;
-  box-shadow: inset 0 1px 2px rgba(27,31,35,.075);
-  padding: 6px 8px;
-}
-
-.btn {
-  background-color: #eff3f6;
-  background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
-  border: 1px solid rgba(27,31,35,.2);
-  color: #24292e;
-  padding: 5px;
-}
-
-.btn-primary, .btn-add, .btn-delete, .btn-download {
-  padding: 10px;
-}
-
-.btn-primary, .btn-add {
-  background: #28a745;
-  background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
-  color: white;
-}
-
-.btn-add, .btn-delete {
-  border-radius: 50%;
-  padding: 4px;
-  min-width: 30px;
-  min-height: 30px;
-}
-
-.btn-delete {
-  background: #A52727;
-  background-image: linear-gradient(-180deg,#D13434,#A52727 90%);
-  color: white;
-}
-
+    .form li > span {
+    font-size: 14px;
+  }
+*/
