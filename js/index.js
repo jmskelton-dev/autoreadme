@@ -85,6 +85,12 @@
     `
   }
 
+  /* Returns Markdown to create Markdown box. */
+  function generateMarkdown() {
+    console.log(`markdown fired`);
+    $('#output-markdown-syntax').val($('#output-markdown-syntax').val() + 'more text');
+  }
+
 /* Data Storage */
   const STORE = {
     view: 'start',
@@ -243,7 +249,9 @@
     function watchButton() {
       $('#readmeOptionsForm').on('submit', function(event) {
           event.preventDefault();
-
+          STORE.view = 'output';
+          generateMarkdown();
+          render();
       });
   }
 
