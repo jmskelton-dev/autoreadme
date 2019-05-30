@@ -290,7 +290,6 @@ ${STORE.license === null ? `` : `${STORE.license}`}
 
       });
   }
-
   /* Watches for submit of README details */
   function watchButton() {
     $('#readmeOptionsForm').on('submit', function(event) {
@@ -298,6 +297,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
         STORE.view = 'output';
         updateFromInput();
         const el = generateMarkdown();
+        render();
         const stackedit = new Stackedit();
         console.log(el);
         // Open the iframe
