@@ -35,15 +35,16 @@
     <legend><span class="number">2</span> Project Details</legend>
       <ul>
         <li>
-          <label for="repo-project-name">Project Name:</label>
+          <label for="repo-project-name">Project Name *</label>
           <input type="text" name="repo-project-name" id="repo-project-name" ${STORE.name === null ? `` : `value="${STORE.name}"`} required>
+          <span>* Required</span>
         </li>
         <li>
           <label for="repo-project-description">Project Description</label>
           <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here.">${STORE.description === null ? `` : `${STORE.description}`}</textarea>
         </li>
         <li>
-          <label for="repo-live-demo-url">Live Demo Link:</label>
+          <label for="repo-live-demo-url">Live Demo Link</label>
           <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here" ${STORE.sites === null ? `` : `value="${STORE.sites}"`}>
           <span aria-hidden="true">(e.g. https://www.autoreadme.dev)</span>
         </li>
@@ -197,7 +198,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     console.log(`updateFromInput fired`)
     STORE.name = $('#repo-project-name').val();
     STORE.description = $('#repo-project-description').val();
-    STORE.sites = $('repo-live-demo-url').val();
+    STORE.sites = $('#repo-live-demo-url').val();
     STORE.instructions = $('#repo-installation-instructions').val();
     STORE.license = $('#repo-license').val();
     STORE.screenshots[0].url = $('#screenshot-mobile-url').val();
