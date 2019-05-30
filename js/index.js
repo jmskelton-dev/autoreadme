@@ -88,7 +88,7 @@
   /* Returns Markdown to create Markdown box. */
   function generateMarkdown() {
     console.log(`markdown fired`);
-    $('#output-markdown-syntax').val($('#output-markdown-syntax').val() + 'more text');
+    $('#output-markdown-syntax').val(`more text`);
   }
 
 /* Data Storage */
