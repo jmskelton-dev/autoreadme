@@ -190,7 +190,7 @@ var Stackedit = function () {
       this.$containerEl = document.createElement('div');
       this.$containerEl.className = silent ? 'stackedit-hidden-container' : 'stackedit-container';
       this.$containerEl.innerHTML = containerHtml;
-      $('#mainForm').html(this.$containerEl);
+      $('#stackedit').html(this.$containerEl);
 
       // Load StackEdit in the iframe
       var iframeEl = this.$containerEl.querySelector('iframe');

@@ -102,17 +102,17 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
-    return `${STORE.name === null ? `` : `##${STORE.name}`}
+    return `${STORE.name === null ? '' : `## ${STORE.name}`}
 
-${STORE.description === null ? `` : `${STORE.description}`}
+${STORE.description === null ? '' : `${STORE.description}`}
 
-${STORE.screenshots[0].url === null ? `` : `![Mobile Screenshot](${STORE.screenshots[0].url})`}
+${STORE.screenshots[0].url === '' ? '' : `![Mobile Screenshot](${STORE.screenshots[0].url})`}
 
-${STORE.screenshots[1].url === null ? `` : `![Desktop Screenshot](${STORE.screenshots[1].url})`}
+${STORE.screenshots[1].url === '' ? '' : `![Desktop Screenshot](${STORE.screenshots[1].url})`}
 
-${STORE.instructions === null ? `` : `##Installation Instructions`}
+${STORE.instructions === '' ? '' : `## Installation Instructions`}
 
-${STORE.instructions === null ? `` : `${STORE.instructions}`}
+${STORE.instructions === '' ? '' : `${STORE.instructions}`}
 
 ## Versioning
 
@@ -120,7 +120,7 @@ ${STORE.instructions === null ? `` : `${STORE.instructions}`}
 
 ${markdownAuthors}
 
-${STORE.license === null ? `` : `##License`}
+${STORE.license === null ? `` : `## License`}
 
 ${STORE.license === null ? `` : `${STORE.license}`}
     `;
@@ -256,19 +256,19 @@ ${STORE.license === null ? `` : `${STORE.license}`}
       $('#landing-info').show();
       $('#repoURLForm').show();
       $('#readmeOptionsForm').hide();
-      $('#readmeOutputForm').hide();
+      $('#resultsPage').hide();
     } else if (STORE.view === 'options') {
       renderReadmeOptions();
       $('#landing-info').hide();
       $('#repoURLForm').show();
       $('#readmeOptionsForm').show();
-      $('#readmeOutputForm').hide();
+      $('#resultsPage').hide();
     } else if (STORE.view === 'output') {
       //renderOutput(); 
       $('#landing-info').hide();
       $('#repoURLForm').hide();
       $('#readmeOptionsForm').hide();
-      $('#readmeOutputForm').show();
+      $('#resultsPage').show();
     }
   }
 
@@ -307,11 +307,6 @@ ${STORE.license === null ? `` : `${STORE.license}`}
           content: {
             text: el // and the Markdown content.
           }
-        });
-      
-        // Listen to StackEdit events and apply the changes to the textarea.
-        stackedit.on('fileChange', (file) => {
-          el.value = file.content.text;
         });
     });
   }
