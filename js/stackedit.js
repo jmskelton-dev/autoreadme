@@ -202,7 +202,6 @@ var Stackedit = function () {
           switch (event.data.type) {
             case 'ready':
               // StackEdit has its own one close button
-              closeButton.parentNode.removeChild(closeButton);
               break;
             case 'fileChange':
               // Trigger fileChange event
