@@ -165,6 +165,9 @@ var Stackedit = function () {
       var file = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var silent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
+      // Close before opening a new iframe
+      this.close();
+
       // Make StackEdit URL
       urlParser.href = this.$options.url;
       this.$origin = urlParser.protocol + '//' + urlParser.host; // Save StackEdit origin
@@ -199,6 +202,7 @@ var Stackedit = function () {
           switch (event.data.type) {
             case 'ready':
               // StackEdit has its own one close button
+              closeButton.parentNode.removeChild(closeButton);
               break;
             case 'fileChange':
               // Trigger fileChange event
