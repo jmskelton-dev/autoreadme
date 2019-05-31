@@ -31,6 +31,13 @@
     return authorInputs.join("\n");
   }
 
+  /* Generate markdown for releases */
+  function generateReleaseMarkdown() {
+    for (const release of releases) {
+      return `${release.version} | [${release.name}](${release.url}) | ${release.description}`;
+    }
+  }
+
   /* Returns HTML to create Readme Options Page. */
   function generateReadmeOptions() {
     
@@ -101,6 +108,7 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
+    const markdownReleases = generateReleaseMarkdown();
     return `${STORE.name === '' ? '' : `## ${STORE.name}`}
 ${STORE.description === '' ? '' : `${STORE.description}`}
 ${STORE.sites === '' ? '' : `\n## Demo\n[Live Demo](${STORE.sites} "autoreadme.dev")`}
@@ -109,7 +117,7 @@ ${STORE.screenshots[1].url === '' ? '' : `\n![Desktop Screenshot](${STORE.screen
 ${STORE.instructions === '' ? '' : `\n## Installation Instructions\n${STORE.instructions}`}
 
 ## Versioning
-
+${markdownReleases}
 ## Authors
 ${markdownAuthors}
 ${STORE.license === '' ? `` : `\n## License\n${STORE.license}`}
