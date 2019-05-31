@@ -5,16 +5,6 @@
   --box-border: #d1d5da;
   --bg-gray: #f6f8fa;
   --bg-gray-light: #fafbfc;
-  /*  *000000 - Black
-  0E0F0F
-  161616
-  *4F4F4F
-  6a6a6a
-  *CCCCCC
-  *E3E4E5
-  f3f3f3
-  *ffffff - White
-  */
   
   --blue-color: #0366d6;
   --green-color: green;
@@ -23,6 +13,8 @@
   
   --error-bg-color: #ffdce0;
   --error-txt-color: #86181d;
+
+  --box-shadow: rgba(0,0,0,0.075);
   
   --btn-txt-color: #24292e;
   --btn-bg-color: #eff3f6;
@@ -63,7 +55,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Anonymous Pro', monospace;
+  font-family: 'Montserrat', 'Raleway', sans-serif;
+}
+
+legend {
+  font-family: 'Raleway';
 }
 
 button {
@@ -211,8 +207,8 @@ header {
     font-size: 16px;  
   }
 
-  .form .number {
-    background: #24292e;
+  .form legend .icon {
+    background: var(--gray-dark);
     color: #ffffff;
     display: inline-block;
     height: 30px;
@@ -236,11 +232,11 @@ header {
   }
   
   .form input[type="text"]:focus, .form input[type="url"]:focus, .form textarea:focus {
-    background-color: rgba(246,248,250,0.25);
+    background-color: var(--bg-gray-light);
     color: var(--gray-dark);
     outline: none;
-    box-shadow: 0 -2px 3px rgba(0,0,0,0.075) inset;
-    -webkit-box-shadow: 0 -2px 3px rgba(0,0,0,0.075) inset;
+    box-shadow: 0 -2px 3px var(--box-shadow) inset;
+    -webkit-box-shadow: 0 -2px 3px var(--box-shadow) inset;
   } 
 
   .form li > span {
@@ -249,12 +245,11 @@ header {
     padding: 9px;
     border-top: 1px solid var(--box-border);
     text-align: center;
-    color: #6a6a6a;
+    color: var(--gray-medium);
     font-size: 12px;
-    /* border-radius: 0px 0px 5px 5px; */
   }
 
-  .form li > :last-child {
+  .form li input:last-child, .form li textarea:last-child, .form li span:last-child {
     border-radius: 0px 0px 5px 5px;
   }
 
@@ -266,6 +261,21 @@ header {
   
   textarea.output {
     min-height: 250px;
+  }
+
+  .form .authors li {
+    border: none;
+    border-radius: 0px;
+    margin-bottom: 15px;
+  }
+
+  .form .authors input {
+    display: inline-block;
+    width: auto;
+    border: 1px solid var(--box-border);
+    border-right-width: 0px;
+    vertical-align: top;
+    border-radius: 5px 0px 0px 5px;
   }
 
   .btn {
@@ -318,6 +328,13 @@ header {
     border: 1px solid var(--btn-warn-hover-border-color);
   }
 
+  .form .authors .btn {
+    margin-bottom: 0px;
+    height: 40px;
+    padding: 0px 9px;
+    border-radius: 0px 5px 5px 0px;
+    min-width: 60px;
+  }
 /* Footer */
 
 footer {

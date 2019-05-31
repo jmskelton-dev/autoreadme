@@ -37,61 +37,53 @@
     const authors = generateAuthorInputs(STORE.authors);
 
     return `<fieldset>
-    <legend><span class="number">2</span> Project Details</legend>
+    <legend><i class="fas fa-pencil-alt icon" aria-hidden="true"></i> Project Details</legend>
       <ul>
         <li>
           <label for="repo-project-name">Project Name *</label>
-          <input type="text" name="repo-project-name" id="repo-project-name" ${STORE.name === null ? `` : `value="${STORE.name}"`} required>
+          <input type="text" name="repo-project-name" id="repo-project-name" ${STORE.name === '' ? `` : `value="${STORE.name}"`} required>
           <span>* Required</span>
         </li>
         <li>
           <label for="repo-project-description">Project Description</label>
-          <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here.">${STORE.description === null ? `` : `${STORE.description}`}</textarea>
+          <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here.">${STORE.description === '' ? `` : `${STORE.description}`}</textarea>
         </li>
         <li>
           <label for="repo-live-demo-url">Live Demo Link</label>
-          <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here" ${STORE.sites === null ? `` : `value="${STORE.sites}"`}>
+          <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here" ${STORE.sites === '' ? `` : `value="${STORE.sites}"`}>
           <span aria-hidden="true">(e.g. https://www.autoreadme.dev)</span>
         </li>
         <li>
           <label for="repo-installation-instructions">Installation Instructions</label>
-          <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable).">${STORE.instructions === null ? `` : `${STORE.instructions}`}</textarea>
+          <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable).">${STORE.instructions === '' ? `` : `${STORE.instructions}`}</textarea>
         </li>
         <li>
           <label for="repo-license">License</label>
-          <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here" ${STORE.license === null ? `` : `value="${STORE.license}"`}>
+          <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here" ${STORE.license === '' ? `` : `value="${STORE.license}"`}>
           <span>(e.g. GNU GPLv3) <a href="https://choosealicense.com" target="_blank" title="Need help picking a license? Visit choosealicense.com"><i class="fas fa-info-circle" aria-hidden="true"></i></a></span>
         </li>
       </ul>
     </fieldset>
     <fieldset>
-      <legend>Authors</legend>
+      <legend><i class="fas fa-users icon" aria-hidden="true"></i> Authors</legend>
       <p>Enter GitHub Usernames</p>
-      <div id="authorUsernames">
+      <div id="authorUsernames" class="authors">
         <ul>
           ${authors}
         </ul>
       </div>
     </fieldset>
     <fieldset>
-      <legend>Screenshots</legend>
-      <p>Select which screenshots (if any) you wish to display in your readme. Enter the URL for the appropriate screenshots.</p>
+      <legend><i class="fas fa-images icon" aria-hidden="true"></i> Screenshots</legend>
+      <p>Enter the URL for the appropriate screenshots you wish to display.</p>
       <ul>
-        <li class="checkbox">
-          <input type="checkbox" name="screenshot-mobile" id="screenshot-mobile" aria-label="Include Mobile Screenshots." ${STORE.screenshots[0].display ? `checked`: ``}>
-          <label for="screenshot-mobile">Mobile</label>
-        </li>
         <li>
-          <label for="screenshot-mobile-url">Screenshot URL</label>
+          <label for="screenshot-mobile-url">Mobile Screenshot URL</label>
           <input type="text" name="screenshot-mobile-url" id="screenshot-mobile-url" placeholder="Enter mobile screenshot URL here." ${STORE.screenshots[0].display ? `value="${STORE.screenshots[0].url}"`: ``}>
           <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
         </li>
-        <li class="checkbox">
-          <input type="checkbox" name="screenshot-desktop" id="screenshot-desktop" aria-label="Include Desktop Screenshots." ${STORE.screenshots[1].display ? `checked`: ``}>
-          <label for="screenshot-desktop">Desktop</label>
-        </li>
         <li>
-          <label for="screenshot-desktop-url">Screenshot URL</label>
+          <label for="screenshot-desktop-url">Desktop Screenshot URL</label>
           <input type="text" name="screenshot-desktop-url" id="screenshot-desktop-url" placeholder="Enter desktop screenshot URL here."${STORE.screenshots[1].display ? `value="${STORE.screenshots[1].url}"`: ``}>
           <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
         </li>
@@ -109,9 +101,9 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
-    return `${STORE.name === null ? '' : `## ${STORE.name}`}
+    return `${STORE.name === '' ? '' : `## ${STORE.name}`}
 
-${STORE.description === null ? '' : `${STORE.description}`}
+${STORE.description === '' ? '' : `${STORE.description}`}
 
 ${STORE.screenshots[0].url === '' ? '' : `![Mobile Screenshot](${STORE.screenshots[0].url})`}
 
@@ -127,9 +119,9 @@ ${STORE.instructions === '' ? '' : `${STORE.instructions}`}
 
 ${markdownAuthors}
 
-${STORE.license === null ? `` : `## License`}
+${STORE.license === '' ? `` : `## License`}
 
-${STORE.license === null ? `` : `${STORE.license}`}
+${STORE.license === '' ? `` : `${STORE.license}`}
     `;
   }
 
@@ -137,18 +129,18 @@ ${STORE.license === null ? `` : `${STORE.license}`}
   const STORE = {
     view: 'start',
     name : 'My Project',
-    description : null,
+    description : '',
     authors : [],
-    sites : null,
-    license : null,
-    instructions : null,
+    sites : '',
+    license : '',
+    instructions : '',
     screenshots : [
         {type: 'mobile',
         display: false,
-        url: null},
+        url: ''},
         {type: 'desktop',
         display: false,
-        url: null}
+        url: ''}
     ]
   }
 
