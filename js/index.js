@@ -5,7 +5,12 @@
   /* Generate individual input field for repo author */
   function generateAuthorInputItem(author, index) {
     const currentAuthor = index + 1;
-    return `<input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-add">Add</button><button type="button" class="btn btn-small btn-delete">Delete</button><br>`;
+    if (currentAuthor < STORE.authors.length) {
+    return `<li><input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" data-index-number="${index}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-delete delete-author">Delete</button></li>`;
+    } else {
+      return `<li><input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" data-index-number="${index}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-delete delete-author">Delete</button></li>
+      <li><input type="text" name="author-username" id="author-username-${currentAuthor+1}" aria-label="Author ${currentAuthor+1} Username" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-add">Add</button></li>`;
+    }
   }
 
   /* Generate all HTML inputs via generateAuthorInputItem */
@@ -63,7 +68,9 @@
       <legend>Authors</legend>
       <p>Enter GitHub Usernames</p>
       <div id="authorUsernames">
-        ${authors}
+        <ul>
+          ${authors}
+        </ul>
       </div>
     </fieldset>
     <fieldset>
@@ -350,12 +357,21 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     });
   }
 
+  /* Watches for deletion of author */
+  function watchDeleteAuthor() {
+    console.log('watching for delete.');
+    $('#readmeOptionsForm').on('click', '.delete-author', function(event) {
+      console.log(this.closest('li'));
+  });
+  }
+
   /* Run on Initialize */
   function initializePage() {
     //Event Listeners
     watchForm();
     watchButton();
     watchEditButton();
+    watchDeleteAuthor();
 
     //Render Function
     render();
