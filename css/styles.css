@@ -272,6 +272,7 @@ header {
   .form .authors input {
     display: inline-block;
     width: auto;
+    max-width: 170px;
     border: 1px solid var(--box-border);
     border-right-width: 0px;
     vertical-align: top;
@@ -346,10 +347,14 @@ footer {
 }
 
 
-/*
-  Media: If desktop, 
+@media only screen and (min-width: 768px) {
 
-    .form li > span {
+  .form li > span {
     font-size: 14px;
   }
-*/
+
+  .form .authors input {
+    max-width: initial;
+  }
+
+}
