@@ -5,7 +5,12 @@
   /* Generate individual input field for repo author */
   function generateAuthorInputItem(author, index) {
     const currentAuthor = index + 1;
-    return `<input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-add">Add</button><button type="button" class="btn btn-small btn-delete">Delete</button><br>`;
+    if (currentAuthor < STORE.authors.length) {
+    return `<li><input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" data-item-id="${index}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-delete delete-author">Delete</button></li>`;
+    } else {
+      return `<li><input type="text" name="author-username-${currentAuthor}" id="author-username-${currentAuthor}" data-item-id="${index}" aria-label="Author ${currentAuthor} Username" value="${author}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-delete delete-author">Delete</button></li>
+      <li><input type="text" name="author-username" id="author-username-${currentAuthor+1}" aria-label="Author ${currentAuthor+1} Username" data-item-id="${index+1}" placeholder="Enter Author Username Here"><button type="button" class="btn btn-small btn-add add-author">Add</button></li>`;
+    }
   }
 
   /* Generate all HTML inputs via generateAuthorInputItem */
@@ -63,7 +68,9 @@
       <legend>Authors</legend>
       <p>Enter GitHub Usernames</p>
       <div id="authorUsernames">
-        ${authors}
+        <ul>
+          ${authors}
+        </ul>
       </div>
     </fieldset>
     <fieldset>
@@ -131,7 +138,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     view: 'start',
     name : 'My Project',
     description : null,
-    authors : [''],
+    authors : [],
     sites : null,
     license : null,
     instructions : null,
@@ -159,7 +166,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
 /* API Calls */
   /* Get details for repo to put in Readme Options input fields */
   function getRepoDetails (gitRepo) {
-    const queryURL = `https://api.github.com/repos/${gitRepo}`
+    const queryURL = `https://api.github.com/repos/${gitRepo}`;
     
     fetch(queryURL)
     .then(response => {
@@ -170,6 +177,27 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     })
     .then(responseJson => {
       storeRepoDetails(responseJson);
+      getContributors(gitRepo);
+    })
+    .catch(err => {
+      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
+      $('#js-error-message').removeClass('hidden');
+    });
+  }
+  
+  /* Get list of contributors for repo to put in Readme Options Author fields */
+  function getContributors (gitRepo) {
+    const queryURL = `https://api.github.com/repos/${gitRepo}/contributors`;
+    
+    fetch(queryURL)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => {
+      storeAuthorDetails(responseJson);
       STORE.view = 'options';
       render();
     })
@@ -181,7 +209,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
 
   /* Get release details for repo to put in Readme Output */
   function getRepoReleases (gitRepo) {
-    const queryURL = `https://api.github.com/repos/${gitRepo}/releases`
+    const queryURL = `https://api.github.com/repos/${gitRepo}/releases`;
     
     fetch(queryURL)
     .then(response => {
@@ -206,6 +234,12 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     return $('#repo-url').val();
   }
 
+  /* Clears any empty values from Author Array */
+  function cleanAuthorArray () {
+    const cleanedAuthors = STORE.authors.filter(author => author.length > 0);
+    STORE.authors = cleanedAuthors;
+  }
+
   /* Get user input from Form and update STORAGE. */
   function updateFromInput () {
     console.log(`updateFromInput fired`)
@@ -216,6 +250,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     STORE.license = $('#repo-license').val();
     STORE.screenshots[0].url = $('#screenshot-mobile-url').val();
     STORE.screenshots[1].url = $('#screenshot-desktop-url').val();
+
   }
 
   /* Parses user input to find github repo URL */
@@ -239,22 +274,17 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     }
   }
 
+  /* Store GitHub Repo details in STORE object */
   function storeRepoDetails (responseJson) {
 
     STORE.name = responseJson.name;
     STORE.description = responseJson.description;
-    STORE.authors = [responseJson.owner.login];
-
+    
     //Check if has GitHub Pages
     responseJson.has_pages ? STORE.sites = `https://${responseJson.owner.login}.github.io/${responseJson.name}/` : ''; 
 
     //Check if has a license specified
     responseJson.license === null ? '' : STORE.license = responseJson.license.name;
-  }
-
-  function gitReleaseDetails (responseJson) {
-    console.log(responseJson);
-    
   }
 
   function storeReleaseDetails (responseJson) {
@@ -271,9 +301,31 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     }
   }
 
-  function gitReleaseDetails (responseJson) {
-    console.log(responseJson);
-    
+  /* For each contributor in Git Repo, add to Authors array */
+  function storeAuthorDetails (responseJson) {
+    for (let contributor in responseJson) {
+      STORE.authors.push(responseJson[contributor].login);
+    }
+  }
+
+  /* Gets Author Array Index for current input */
+  function getAuthorID (author) {
+    return $(author).closest('li').find('input').data('item-id');
+  }
+
+  /* Delete Author value from Array */
+  function deleteAuthor (authorIndex) {
+    STORE.authors.splice(authorIndex, 1);
+  }
+
+  /* Add Author value to Array */
+  function addAuthor (author) {
+    STORE.authors.push(author);
+  }
+
+  /* Update Author value in Array */
+  function updateAuthor(author, index) {
+    STORE.authors[index] = author;
   }
 
 /* Rendering Functions */
@@ -282,6 +334,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
   function renderReadmeOptions() {
     $('#readmeOptionsForm').html(generateReadmeOptions());
   }
+  
   /* Renders proper page according to STORE.view value */
   function render() {
     if (STORE.view === 'start') {
@@ -325,11 +378,12 @@ ${STORE.license === null ? `` : `${STORE.license}`}
       });
   }
   /* Watches for submit of README details */
-  function watchButton() {
+  function watchSubmitOptionsButton() {
     $('#readmeOptionsForm').on('submit', function(event) {
         event.preventDefault();
         STORE.view = 'output';
         updateFromInput();
+        cleanAuthorArray();
         render();
         const el = generateMarkdown();
         const stackedit = new Stackedit();
@@ -353,12 +407,45 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     });
   }
 
+  /* Watches for deletion of author */
+  function watchDeleteAuthor() {
+    $('#readmeOptionsForm').on('click', '.delete-author', function(event) {
+      const authorIndex = getAuthorID(this);
+      deleteAuthor(authorIndex);
+      $('#authorUsernames').html(`<ul>${generateAuthorInputs(STORE.authors)}</ul>`);
+    });
+  }
+
+  /* Watches for addition of author. does not add author if already added via update author function */
+  function watchAddAuthor() {
+    $('#readmeOptionsForm').on('click', '.add-author', function(event) {
+      const author = $(this).closest('li').find('input').val();      
+      const authorIndex = getAuthorID(this);
+      if (STORE.authors[authorIndex] !== author) {
+        addAuthor(author);
+      }
+      $('#authorUsernames').html(`<ul>${generateAuthorInputs(STORE.authors)}</ul>`);
+    });
+  }
+
+  /* Watch for live updates to author usernames */
+  function watchUpdateAuthor() {
+    $('#readmeOptionsForm').on('change', 'input', function(event) {
+      const authorValue = $(this).val();
+      const authorIndex = getAuthorID(this);
+      updateAuthor(authorValue, authorIndex);
+    })
+  }
+
   /* Run on Initialize */
   function initializePage() {
     //Event Listeners
     watchForm();
-    watchButton();
+    watchSubmitOptionsButton();
     watchEditButton();
+    watchDeleteAuthor();
+    watchAddAuthor();
+    watchUpdateAuthor();
 
     //Render Function
     render();
