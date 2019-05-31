@@ -145,14 +145,16 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     ]
   }
 
-  const releases = {
-    name : '',
-    description : '',
-    version : '',
-    prerelease : false,
-    assets : [],
-    url : '',
-  }
+  // {
+  //   name : '',
+  //   description : '',
+  //   version : '',
+  //   prerelease : false,
+  //   assets : [],
+  //   url : '',
+  // }
+  const releases = [];
+    
 
 /* API Calls */
   /* Get details for repo to put in Readme Options input fields */
@@ -190,6 +192,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     })
     .then(responseJson => {
       storeReleaseDetails(responseJson);
+    })
     .catch(err => {
       $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
       $('#js-error-message').removeClass('hidden');
@@ -255,15 +258,17 @@ ${STORE.license === null ? `` : `${STORE.license}`}
   }
 
   function storeReleaseDetails (responseJson) {
+    for (let release in responseJson) {
+      const projectObject = {};
+      projectObject.name = responseJson[release].name;
+      projectObject.description = responseJson[release].body;
+      projectObject.version = responseJson[release].tag_name;
+      projectObject.prerelease = responseJson[release].prerelease;
+      projectObject.assets = responseJson[release].assets;
+      projectObject.url = responseJson[release].url;
 
-    releases.name = responseJson.name;
-    releases.description = responseJson.body;
-    releases.version = responseJson.tag_name;
-    releases.prerelease = responseJson.prerelease;
-    releases.assets = responseJson.assets;
-    releases.url = responseJson.url;
-
-
+      releases.push(projectObject);
+    }
   }
 
   function gitReleaseDetails (responseJson) {
