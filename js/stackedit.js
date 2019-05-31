@@ -196,12 +196,6 @@ var Stackedit = function () {
       var iframeEl = this.$containerEl.querySelector('iframe');
       iframeEl.src = urlParser.href;
 
-      // Add close button handler
-      var closeButton = this.$containerEl.querySelector('a');
-      closeButton.addEventListener('click', function () {
-        return _this2.close();
-      });
-
       // Add message handler
       this.$messageHandler = function (event) {
         if (event.origin === _this2.$origin && event.source === iframeEl.contentWindow) {
