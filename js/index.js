@@ -131,7 +131,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     view: 'start',
     name : 'My Project',
     description : null,
-    authors : [''],
+    authors : [],
     sites : null,
     license : null,
     instructions : null,
@@ -159,6 +159,27 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     })
     .then(responseJson => {
       storeRepoDetails(responseJson);
+      getContributors(gitRepo);
+    })
+    .catch(err => {
+      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
+      $('#js-error-message').removeClass('hidden');
+    });
+  }
+
+  /* Get list of contributors for repo to put in Readme Options Author fields */
+  function getContributors (gitRepo) {
+    const queryURL = `https://api.github.com/repos/${gitRepo}/contributors`
+    
+    fetch(queryURL)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => {
+      storeAuthorDetails(responseJson);
       STORE.view = 'options';
       render();
     })
@@ -230,13 +251,22 @@ ${STORE.license === null ? `` : `${STORE.license}`}
 
     STORE.name = responseJson.name;
     STORE.description = responseJson.description;
-    STORE.authors = [responseJson.owner.login];
+    // STORE.authors = [responseJson.owner.login];
 
     //Check if has GitHub Pages
     responseJson.has_pages ? STORE.sites = `https://${responseJson.owner.login}.github.io/${responseJson.name}/` : ''; 
 
     //Check if has a license specified
     responseJson.license === null ? '' : STORE.license = responseJson.license.name;
+  }
+
+  function storeAuthorDetails (responseJson) {
+
+    //STORE.authors = [responseJson.owner.login];
+    for (let contributor in responseJson) {
+      STORE.authors.push(responseJson[contributor].login);
+    }
+
   }
 
   function gitReleaseDetails (responseJson) {
