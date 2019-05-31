@@ -320,6 +320,27 @@ ${STORE.license === '' ? `` : `${STORE.license}`}
     STORE.authors[index] = author;
   }
 
+  /* Clears STORE and releases when user pulls data for new repo */
+  function resetProject () {
+      console.log('resetting project');
+      STORE.name = 'My Project';
+      STORE.description = '';
+      STORE.authors = [];
+      STORE.sites = '';
+      STORE.license = '';
+      STORE.instructions = '';
+      STORE.screenshots = [
+          {type: 'mobile',
+          display: false,
+          url: ''},
+          {type: 'desktop',
+          display: false,
+          url: ''}
+      ]
+      
+      releases.length = 0;
+  }
+
 /* Rendering Functions */
 
   /* Appends result from generateReadmeOptions to readmeOptionsForm id for Options page */
@@ -356,6 +377,9 @@ ${STORE.license === '' ? `` : `${STORE.license}`}
       $('#repoURLForm').on('submit', function(event) {
           event.preventDefault();
           $('#js-error-message').addClass('hidden');
+          if (STORE.view === 'options') {
+           resetProject();
+          }
           const gitRepo = getUserRepoInput();
           
           try {
