@@ -37,7 +37,7 @@
     const authors = generateAuthorInputs(STORE.authors);
 
     return `<fieldset>
-    <legend><span class="number">2</span> Project Details</legend>
+    <legend><i class="fas fa-pencil-alt icon" aria-hidden="true"></i> Project Details</legend>
       <ul>
         <li>
           <label for="repo-project-name">Project Name *</label>
@@ -65,33 +65,25 @@
       </ul>
     </fieldset>
     <fieldset>
-      <legend>Authors</legend>
+      <legend><i class="fas fa-users icon" aria-hidden="true"></i> Authors</legend>
       <p>Enter GitHub Usernames</p>
-      <div id="authorUsernames">
+      <div id="authorUsernames" class="authors">
         <ul>
           ${authors}
         </ul>
       </div>
     </fieldset>
     <fieldset>
-      <legend>Screenshots</legend>
-      <p>Select which screenshots (if any) you wish to display in your readme. Enter the URL for the appropriate screenshots.</p>
+      <legend><i class="fas fa-images icon" aria-hidden="true"></i> Screenshots</legend>
+      <p>Enter the URL for the appropriate screenshots you wish to display.</p>
       <ul>
-        <li class="checkbox">
-          <input type="checkbox" name="screenshot-mobile" id="screenshot-mobile" aria-label="Include Mobile Screenshots." ${STORE.screenshots[0].display ? `checked`: ``}>
-          <label for="screenshot-mobile">Mobile</label>
-        </li>
         <li>
-          <label for="screenshot-mobile-url">Screenshot URL</label>
+          <label for="screenshot-mobile-url">Mobile Screenshot URL</label>
           <input type="text" name="screenshot-mobile-url" id="screenshot-mobile-url" placeholder="Enter mobile screenshot URL here." ${STORE.screenshots[0].display ? `value="${STORE.screenshots[0].url}"`: ``}>
           <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
         </li>
-        <li class="checkbox">
-          <input type="checkbox" name="screenshot-desktop" id="screenshot-desktop" aria-label="Include Desktop Screenshots." ${STORE.screenshots[1].display ? `checked`: ``}>
-          <label for="screenshot-desktop">Desktop</label>
-        </li>
         <li>
-          <label for="screenshot-desktop-url">Screenshot URL</label>
+          <label for="screenshot-desktop-url">Desktop Screenshot URL</label>
           <input type="text" name="screenshot-desktop-url" id="screenshot-desktop-url" placeholder="Enter desktop screenshot URL here."${STORE.screenshots[1].display ? `value="${STORE.screenshots[1].url}"`: ``}>
           <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
         </li>
