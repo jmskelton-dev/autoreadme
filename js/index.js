@@ -28,7 +28,7 @@
   /* Generate markdown via generateAuthorInputItem */
   function generateAuthorMarkdown(authors) {
     const authorInputs = authors.map((author, index) => generateAuthorMarkdownItem(author, index));
-    return authorInputs.join("");
+    return authorInputs.join("\n");
   }
 
   /* Returns HTML to create Readme Options Page. */
@@ -102,26 +102,17 @@
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
     return `${STORE.name === '' ? '' : `## ${STORE.name}`}
-
 ${STORE.description === '' ? '' : `${STORE.description}`}
-
-${STORE.screenshots[0].url === '' ? '' : `![Mobile Screenshot](${STORE.screenshots[0].url})`}
-
-${STORE.screenshots[1].url === '' ? '' : `![Desktop Screenshot](${STORE.screenshots[1].url})`}
-
-${STORE.instructions === '' ? '' : `## Installation Instructions`}
-
-${STORE.instructions === '' ? '' : `${STORE.instructions}`}
+${STORE.sites === '' ? '' : `\n## Demo\n[Live Demo](${STORE.sites} "autoreadme.dev")`}
+${STORE.screenshots[0].url === '' ? '' : `\n![Mobile Screenshot](${STORE.screenshots[0].url})`}
+${STORE.screenshots[1].url === '' ? '' : `\n![Desktop Screenshot](${STORE.screenshots[1].url})`}
+${STORE.instructions === '' ? '' : `\n## Installation Instructions\n${STORE.instructions}`}
 
 ## Versioning
 
 ## Authors
-
 ${markdownAuthors}
-
-${STORE.license === '' ? `` : `## License`}
-
-${STORE.license === '' ? `` : `${STORE.license}`}
+${STORE.license === '' ? `` : `\n## License\n${STORE.license}`}
     `;
   }
 
