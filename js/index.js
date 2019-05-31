@@ -131,7 +131,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     view: 'start',
     name : 'My Project',
     description : null,
-    authors : [],
+    authors : [''],
     sites : null,
     license : null,
     instructions : null,
@@ -143,6 +143,15 @@ ${STORE.license === null ? `` : `${STORE.license}`}
         display: false,
         url: null}
     ]
+  }
+
+  const releases = {
+    name : '',
+    description : '',
+    version : '',
+    prerelease : false,
+    assets : [],
+    url : '',
   }
 
 /* API Calls */
@@ -159,27 +168,6 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     })
     .then(responseJson => {
       storeRepoDetails(responseJson);
-      getContributors(gitRepo);
-    })
-    .catch(err => {
-      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
-      $('#js-error-message').removeClass('hidden');
-    });
-  }
-
-  /* Get list of contributors for repo to put in Readme Options Author fields */
-  function getContributors (gitRepo) {
-    const queryURL = `https://api.github.com/repos/${gitRepo}/contributors`
-    
-    fetch(queryURL)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error(response.statusText);
-    })
-    .then(responseJson => {
-      storeAuthorDetails(responseJson);
       STORE.view = 'options';
       render();
     })
@@ -200,7 +188,8 @@ ${STORE.license === null ? `` : `${STORE.license}`}
       }
       throw new Error(response.statusText);
     })
-    .then(responseJson => gitReleaseDetails(responseJson))
+    .then(responseJson => {
+      storeReleaseDetails(responseJson);
     .catch(err => {
       $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
       $('#js-error-message').removeClass('hidden');
@@ -251,7 +240,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
 
     STORE.name = responseJson.name;
     STORE.description = responseJson.description;
-    // STORE.authors = [responseJson.owner.login];
+    STORE.authors = [responseJson.owner.login];
 
     //Check if has GitHub Pages
     responseJson.has_pages ? STORE.sites = `https://${responseJson.owner.login}.github.io/${responseJson.name}/` : ''; 
@@ -260,12 +249,20 @@ ${STORE.license === null ? `` : `${STORE.license}`}
     responseJson.license === null ? '' : STORE.license = responseJson.license.name;
   }
 
-  function storeAuthorDetails (responseJson) {
+  function gitReleaseDetails (responseJson) {
+    console.log(responseJson);
+    
+  }
 
-    //STORE.authors = [responseJson.owner.login];
-    for (let contributor in responseJson) {
-      STORE.authors.push(responseJson[contributor].login);
-    }
+  function storeReleaseDetails (responseJson) {
+
+    releases.name = responseJson.name;
+    releases.description = responseJson.body;
+    releases.version = responseJson.tag_name;
+    releases.prerelease = responseJson.prerelease;
+    releases.assets = responseJson.assets;
+    releases.url = responseJson.url;
+
 
   }
 
@@ -314,6 +311,7 @@ ${STORE.license === null ? `` : `${STORE.license}`}
           try {
             const githubUserRepo = parseUserInput(gitRepo);
             getRepoDetails(githubUserRepo);
+            getRepoReleases(githubUserRepo);
           } catch (e) {
             $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${e.message}`);
             $('#js-error-message').removeClass('hidden');
