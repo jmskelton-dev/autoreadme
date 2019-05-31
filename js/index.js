@@ -41,25 +41,25 @@
       <ul>
         <li>
           <label for="repo-project-name">Project Name *</label>
-          <input type="text" name="repo-project-name" id="repo-project-name" ${STORE.name === null ? `` : `value="${STORE.name}"`} required>
+          <input type="text" name="repo-project-name" id="repo-project-name" ${STORE.name === '' ? `` : `value="${STORE.name}"`} required>
           <span>* Required</span>
         </li>
         <li>
           <label for="repo-project-description">Project Description</label>
-          <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here.">${STORE.description === null ? `` : `${STORE.description}`}</textarea>
+          <textarea name="repo-project-description" id="repo-project-description" cols="30" rows="10" spellcheck="true" placeholder="Enter a description for your project here.">${STORE.description === '' ? `` : `${STORE.description}`}</textarea>
         </li>
         <li>
           <label for="repo-live-demo-url">Live Demo Link</label>
-          <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here" ${STORE.sites === null ? `` : `value="${STORE.sites}"`}>
+          <input type="url" name="repo-live-demo-url" id="repo-live-demo-url" placeholder="Enter your live demo URL here" ${STORE.sites === '' ? `` : `value="${STORE.sites}"`}>
           <span aria-hidden="true">(e.g. https://www.autoreadme.dev)</span>
         </li>
         <li>
           <label for="repo-installation-instructions">Installation Instructions</label>
-          <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable).">${STORE.instructions === null ? `` : `${STORE.instructions}`}</textarea>
+          <textarea name="repo-installation-instructions" id="repo-installation-instructions" cols="30" rows="10" spellcheck="true" placeholder="Enter installation instructions here (if applicable).">${STORE.instructions === '' ? `` : `${STORE.instructions}`}</textarea>
         </li>
         <li>
           <label for="repo-license">License</label>
-          <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here" ${STORE.license === null ? `` : `value="${STORE.license}"`}>
+          <input type="text" name="repo-license" id="repo-license" placeholder="Enter your project's license here" ${STORE.license === '' ? `` : `value="${STORE.license}"`}>
           <span>(e.g. GNU GPLv3) <a href="https://choosealicense.com" target="_blank" title="Need help picking a license? Visit choosealicense.com"><i class="fas fa-info-circle" aria-hidden="true"></i></a></span>
         </li>
       </ul>
@@ -101,9 +101,9 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
-    return `${STORE.name === null ? '' : `## ${STORE.name}`}
+    return `${STORE.name === '' ? '' : `## ${STORE.name}`}
 
-${STORE.description === null ? '' : `${STORE.description}`}
+${STORE.description === '' ? '' : `${STORE.description}`}
 
 ${STORE.screenshots[0].url === '' ? '' : `![Mobile Screenshot](${STORE.screenshots[0].url})`}
 
@@ -119,9 +119,9 @@ ${STORE.instructions === '' ? '' : `${STORE.instructions}`}
 
 ${markdownAuthors}
 
-${STORE.license === null ? `` : `## License`}
+${STORE.license === '' ? `` : `## License`}
 
-${STORE.license === null ? `` : `${STORE.license}`}
+${STORE.license === '' ? `` : `${STORE.license}`}
     `;
   }
 
@@ -129,18 +129,18 @@ ${STORE.license === null ? `` : `${STORE.license}`}
   const STORE = {
     view: 'start',
     name : 'My Project',
-    description : null,
+    description : '',
     authors : [],
-    sites : null,
-    license : null,
-    instructions : null,
+    sites : '',
+    license : '',
+    instructions : '',
     screenshots : [
         {type: 'mobile',
         display: false,
-        url: null},
+        url: ''},
         {type: 'desktop',
         display: false,
-        url: null}
+        url: ''}
     ]
   }
 
