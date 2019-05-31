@@ -26,11 +26,10 @@
   }
 
   /* Generate markdown for versions */
-  function generateVersionsMarkdownItem() {
-    releases.forEach(function (release) {
-      const markdownReleases = `${release.version} | [${release.name}](${release.url}) | ${release.description}`;
-      console.log(markdownReleases);
-    });
+  function generateVersionsMarkdown() {
+    for (let release in releases){
+      return `${release.version} | [${release.name}](${release.url}) | ${release.description}`;
+    }
   }
 
   /* Generate markdown via generateAuthorInputItem */
@@ -109,7 +108,7 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
-    const markdownRelease = generateVersionsMarkdownItem();
+    const markdownRelease = generateVersionsMarkdown();
     return `${STORE.name === '' ? '' : `## ${STORE.name}`}
 ${STORE.description === '' ? '' : `${STORE.description}`}
 ${STORE.sites === '' ? '' : `\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}
