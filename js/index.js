@@ -25,14 +25,6 @@
     return `${currentAuthor}: ${author}`;
   }
 
-  /* Generate markdown for versions */
-  function generateVersionsMarkdownItem() {
-    releases.forEach(function (release) {
-      const markdownReleases = `${release.version} | [${release.name}](${release.url}) | ${release.description}`;
-      console.log(markdownReleases);
-    });
-  }
-
   /* Generate markdown via generateAuthorInputItem */
   function generateAuthorMarkdown(authors) {
     const authorInputs = authors.map((author, index) => generateAuthorMarkdownItem(author, index));
@@ -109,7 +101,6 @@
   function generateMarkdown() {
     console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
-    const markdownRelease = generateVersionsMarkdownItem();
     return `${STORE.name === '' ? '' : `## ${STORE.name}`}
 ${STORE.description === '' ? '' : `${STORE.description}`}
 ${STORE.sites === '' ? '' : `\n## Demo\n[Live Demo](${STORE.sites} "autoreadme.dev")`}
@@ -144,14 +135,6 @@ ${STORE.license === '' ? `` : `\n## License\n${STORE.license}`}
     ]
   }
 
-  // {
-  //   name : '',
-  //   description : '',
-  //   version : '',
-  //   prerelease : false,
-  //   assets : [],
-  //   url : '',
-  // }
   const releases = [];
     
 
