@@ -73,7 +73,6 @@
     </fieldset>
     <fieldset>
       <legend><i class="fas fa-users icon" aria-hidden="true"></i> Authors</legend>
-      <p>Enter GitHub Usernames</p>
       <div id="authorUsernames" class="authors">
         <ul>
           ${authors}
@@ -82,7 +81,6 @@
     </fieldset>
     <fieldset>
       <legend><i class="fas fa-images icon" aria-hidden="true"></i> Screenshots</legend>
-      <p>Enter the URL for the appropriate screenshots you wish to display.</p>
       <ul>
         <li>
           <label for="screenshot-mobile-url">Mobile Screenshot URL</label>
