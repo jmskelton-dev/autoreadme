@@ -36,6 +36,14 @@
   --btn-primary-hover-gradient: linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
   --btn-primary-hover-border-color: rgba(27,31,35,0.5);
 
+  --btn-download-txt-color: #ffffff;
+  --btn-download-bg-color: #28a745;
+  --btn-download-gradient: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+
+  --btn-download-hover-bg-color: #269f42;
+  --btn-download-hover-gradient: linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
+  --btn-download-hover-border-color: rgba(27,31,35,0.5);
+
   --btn-warn-txt-color: #cb2431;
   --btn-warn-bg-color: #fafbfc;
   --btn-warn-gradient: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
@@ -400,10 +408,22 @@ header {
     color:var(--btn-primary-txt-color);
   }
 
+  .btn-download, .btn-add {
+    background-color: var(--btn-download-bg-color);
+    background-image: var(--btn-download-gradient);
+    color:var(--btn-download-txt-color);
+  }
+
   .btn-primary:hover, .btn-add:hover {
     background-color: var(--btn-primary-hover-bg-color);
     background-image: var(--btn-primary-hover-gradient);
     border: 0.0625rem solid var(--btn-primary-hover-border-color);
+  }
+
+  .btn-download:hover, .btn-add:hover {
+    background-color: var(--btn-download-hover-bg-color);
+    background-image: var(--btn-download-hover-gradient);
+    border: 0.0625rem solid var(--btn-download-hover-border-color);
   }
 
   .btn-warn, .btn-delete {
