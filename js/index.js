@@ -409,6 +409,7 @@ function watchSubmitOptionsButton() {
 /* Watched for click of download button */
 function watchDownloadButton() {
   $('#downloadMarkup').on('submit', function (event) {
+    event.preventDefault();
     generateReadmeDownload(generateMarkdown());
   });
 }
