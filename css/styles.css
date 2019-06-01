@@ -84,11 +84,11 @@ header {
   display: flex;
   align-self: stretch;
   align-items: center;
-  height: 75px;
+  height: 4.6875rem;
   color: #ffffff;
   background-color: var(--gray-dark);
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 /* Typewriter CSS courtsey of http://css-tricks.com */
@@ -143,21 +143,21 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 1.875rem;
   }
 
   section, .alert, .mainForm {
     width: 100%;
-    max-width: 700px;
+    max-width: 43.75rem;
     margin-left: auto;
     margin-right: auto;
   }
 
   .alert {
-    margin: 15px auto;
-    padding: 12px 20px;
-    border: 1px solid transparent;
-    border-radius: 10px;
+    margin: 0.9375rem auto;
+    padding: 0.75rem 1.25rem;
+    border: 0.0625rem solid transparent;
+    border-radius: 0.625rem;
   }
 
   .error-message {
@@ -167,11 +167,11 @@ header {
   }
   
   section {
-    min-height: 50px; 
+    min-height: 3.125em; 
   }
 
   .intro {
-    margin-bottom: 15px;
+    margin-bottom: 0.9375em;
   }
 
   .intro h2 {
@@ -180,22 +180,22 @@ header {
   }
 
   section *:first-child {
-    margin-top: 0px;
+    margin-top: 0rem;
   }
 
   section *:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0rem;
   }
 
   /* Form*/
 
   .form {
     /*  */
-    margin: 0px auto 20px;
+    margin: 0rem auto 1.25rem;
     background: #ffffff;
-    border: 1px solid var(--form-border);
-    border-radius: 5px;
-    padding: 20px;
+    border: 0.0625rem solid var(--form-border);
+    border-radius: 0.3125rem;
+    padding: 1.25rem;
   }
 
   .form fieldset {
@@ -204,57 +204,57 @@ header {
   }
 
   .form legend {
-    font-size: 22px;
-    margin-bottom: 10px;
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
   }
 
   .form ul {
     /*  */
     list-style: none;
-  	padding: 0px;
-	  margin: 0px;
+  	padding: 0rem;
+	  margin: 0rem;
   }
 
   .form li {
     /*  */
     display: block;
-    padding: 0px;
-    border: 1px solid var(--box-border);
-    margin-bottom: 30px;
-    border-radius: 5px;
+    padding: 0rem;
+    border: 0.0625rem solid var(--box-border);
+    margin-bottom: 1.875rem;
+    border-radius: 0.3125rem;
   }
 
   .form li.button{
     /*  */
     border: none;
-    margin-bottom: 0px;
+    margin-bottom: 0rem;
     text-align: center;
   }
 
   .form li > label {
     display: inline-block;
     position: relative;
-    top: -10px;
-    margin-left: 9px;
+    top: -0.625rem;
+    margin-left: 0.5625rem;
     background: #ffffff;
-    height: 20px;
-    padding: 2px 5px;
+    height: 1.25rem;
+    padding: 0.125rem 0.3125rem;
     color: var(--blue-color);
-    font-size: 16px;  
+    font-size: 1rem;  
   }
 
   .form legend .icon {
     background: var(--gray-dark);
     color: #ffffff;
     display: inline-block;
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    font-size: 16px;
+    height: 1.875rem;
+    width: 1.875rem;
+    line-height: 1.875rem;
+    font-size: 1rem;
     font-weight: bold;
-    margin-right: 5px;
+    margin-right: 0.3125rem;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 0.9375rem;
   }
 
   .form input[type="text"], .form input[type="url"], .form textarea {
@@ -262,82 +262,82 @@ header {
     display: block;
     border: none;
     color: var(--gray-dark);
-    height: 40px;
-    line-height: 40px;
-    padding: 0px 9px;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0rem 0.5625rem;
   }
   
   .form input[type="text"]:focus, .form input[type="url"]:focus, .form textarea:focus {
     background-color: var(--bg-gray-light);
     color: var(--gray-dark);
     outline: none;
-    box-shadow: 0 -2px 3px var(--box-shadow) inset;
-    -webkit-box-shadow: 0 -2px 3px var(--box-shadow) inset;
+    box-shadow: 0 -0.125rem 0.1875rem var(--box-shadow) inset;
+    -webkit-box-shadow: 0 -0.125rem 0.1875rem var(--box-shadow) inset;
   } 
 
   .form li > span {
     background-color: var(--bg-gray);
     display: block;
-    padding: 9px;
-    border-top: 1px solid var(--box-border);
+    padding: 0.5625rem;
+    border-top: 0.0625rem solid var(--box-border);
     text-align: center;
     color: var(--gray-medium);
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .form li input:last-child, .form li textarea:last-child, .form li span:last-child {
-    border-radius: 0px 0px 5px 5px;
+    border-radius: 0rem 0rem 0.3125rem 0.3125rem;
   }
 
   .form textarea {
     resize: vertical;
-    min-height: 50px;
-    line-height: 22px;
+    min-height: 3.125rem;
+    line-height: 1.375rem;
   }
   
   textarea.output {
-    min-height: 250px;
+    min-height: 15.625rem;
   }
 
   .form .authors li {
     border: none;
-    border-radius: 0px;
-    margin-bottom: 15px;
+    border-radius: 0rem;
+    margin-bottom: 0.9375rem;
   }
 
   .form .authors input {
     display: inline-block;
     width: auto;
-    max-width: 170px;
-    border: 1px solid var(--box-border);
-    border-right-width: 0px;
+    max-width: 10.625rem;
+    border: 0.0625rem solid var(--box-border);
+    border-right-width: 0rem;
     vertical-align: top;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 0.3125rem 0rem 0rem 0.3125rem;
   }
 
   .btn {
-    border-radius: 20px;
-    margin: 0 auto 10px;
+    border-radius: 1.25rem;
+    margin: 0 auto 0.625rem;
     text-align: center;
-    line-height: 20px;
-    font-size: 14px;
+    line-height: 1.25rem;
+    font-size: 0.875rem;
     font-weight: bold;
-    padding: 6px 12px;
+    padding: 0.375rem 0.75rem;
     color: var(--btn-txt-color);
-    border: 1px solid var(--btn-border-color);
+    border: 0.0625rem solid var(--btn-border-color);
     background-color: var(--btn-bg-color);
     background-image: var(--btn-gradient);
   }
 
   .btn-small {
-    padding: 3px 10px;
-    font-size: 12px;
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.75rem;
   }
    
   .btn:hover {
     background-color: var(--btn-hover-bg-color);
     background-image: var(--btn-hover-gradient);
-    border: 1px solid var(--btn-hover-border-color);
+    border: 0.0625rem solid var(--btn-hover-border-color);
   }
 
   .btn-primary, .btn-add {
@@ -349,7 +349,7 @@ header {
   .btn-primary:hover, .btn-add:hover {
     background-color: var(--btn-primary-hover-bg-color);
     background-image: var(--btn-primary-hover-gradient);
-    border: 1px solid var(--btn-primary-hover-border-color);
+    border: 0.0625rem solid var(--btn-primary-hover-border-color);
   }
 
   .btn-warn, .btn-delete {
@@ -362,7 +362,7 @@ header {
     color:var(--btn-warn-hover-txt-color);
     background-color: var(--btn-warn-hover-bg-color);
     background-image: var(--btn-warn-hover-gradient);
-    border: 1px solid var(--btn-warn-hover-border-color);
+    border: 0.0625rem solid var(--btn-warn-hover-border-color);
   }
 
   .form .authors .btn {
@@ -385,17 +385,17 @@ footer {
 /* Return to Top */
 #return-to-top {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 1.25rem;
+  right: 1.25rem;
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.7);
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   display: block;
   text-decoration: none;
-  -webkit-border-radius: 35px;
-  -moz-border-radius: 35px;
-  border-radius: 35px;
+  -webkit-border-radius: 2.1875rem;
+  -moz-border-radius: 2.1875rem;
+  border-radius: 2.1875rem;
   display: none;
   -webkit-transition: all 0.3s linear;
   -moz-transition: all 0.3s ease;
@@ -407,9 +407,9 @@ footer {
   color: #fff;
   margin: 0;
   position: relative;
-  left: 16px;
-  top: 13px;
-  font-size: 19px;
+  left: 1rem;
+  top: 0.8125rem;
+  font-size: 1.1875rem;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -421,14 +421,14 @@ footer {
 }
 #return-to-top:hover i {
   color: #fff;
-  top: 5px;
+  top: 0.3125rem;
 }
 
 
 @media only screen and (min-width: 768px) {
 
   .form li > span {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .form .authors input {
