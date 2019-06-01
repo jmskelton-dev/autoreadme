@@ -8,7 +8,10 @@ const STORE = {
   sites: '',
   license: '',
   instructions: '',
-  url: '',
+  screenshot: {	
+      display: false,	
+      url: '',	
+    }
 };
 
 const releases = [];
@@ -97,10 +100,9 @@ function generateReadmeOptions() {
     <fieldset>
       <legend><i class="fas fa-images icon" aria-hidden="true"></i> Screenshots</legend>
       <ul>
-        <li>
-          <label for="screenshot-live-url">Live Website</label>
-          <input type="text" name="screenshot-live-url" id="screenshot-live-url" placeholder="Enter Live URL for screenshot." ${STORE.screenshots ? `value="${STORE.screenshots}"` : ''}>
-          <span>(eg: https://autoreadme.dev)</span>
+        <li class="checkbox">
+          <label for="screenshot-include">Include Desktop Screenshot?</label>
+          <input type="checkbox" name="screenshot-include" id="screenshot-include" aria-label="Include Desktop Screenshot." ${STORE.screenshot.display ? `checked`: ``}>
         </li>
       </ul>
     </fieldset>
@@ -116,7 +118,7 @@ function generateReadmeOptions() {
 function generateMarkdown() {
   const markdownAuthors = generateAuthorMarkdown(STORE.authors);
   const markdownReleases = generateReleaseMarkdown();
-  return `${STORE.name === '' ? '' : `## ${STORE.name}`}${STORE.description === '' ? '' : `\n${STORE.description}`}${STORE.sites === '' ? '' : `\n\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}${STORE.url === '' ? '' : `\n\n![Screenshot](https://image.thum.io/get/${STORE.url})`}${STORE.instructions === '' ? '' : `\n\n## Installation Instructions\n${STORE.instructions}`}${releases.version === '' ? '' : '\n\n## Release History'}\n${markdownReleases}${markdownAuthors === '' ? '' : `\n\n## Authors\n${markdownAuthors}`} ${STORE.license === '' ? '' : `\n\n## License\n${STORE.license}`}
+  return `${STORE.name === '' ? '' : `## ${STORE.name}`}${STORE.description === '' ? '' : `\n${STORE.description}`}${STORE.sites === '' ? '' : `\n\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}${STORE.screenshot.display ? `\n\n![Desktop Screenshot](${STORE.screenshot.url})` : ''}${STORE.instructions === '' ? '' : `\n\n## Installation Instructions\n${STORE.instructions}`}${releases.version === '' ? '' : '\n\n## Release History'}\n${markdownReleases}${markdownAuthors === '' ? '' : `\n\n## Authors\n${markdownAuthors}`} ${STORE.license === '' ? '' : `\n\n## License\n${STORE.license}`}
     `;
 }
 
@@ -300,7 +302,16 @@ function updateFromInput() {
   STORE.sites = $('#repo-live-demo-url').val();
   STORE.instructions = $('#repo-installation-instructions').val();
   STORE.license = $('#repo-license').val();
-  STORE.url = $('#screenshot-live-url').val();
+
+  if ($('#screenshot-include').prop( "checked" ) &  $('#repo-live-demo-url').val() === ''){
+    console.log('Error. Unable to screenshot as no URL provided')
+    throw new Error('Unable to generate screenshot as no URL provided')
+  } else {
+    if ($('#screenshot-include').prop( "checked" )) {
+      STORE.screenshot.display = true;
+      STORE.screenshot.url = `https://image.thum.io/get/${STORE.sites}`;
+    }
+  }
 }
 
 /* Parses user input to find github repo URL */
@@ -347,19 +358,25 @@ function watchForm() {
 function watchSubmitOptionsButton() {
   $('#readmeOptionsForm').on('submit', (event) => {
     event.preventDefault();
+    $('#js-error-message').addClass('hidden');
     STORE.view = 'output';
-    updateFromInput();
-    cleanAuthorArray();
-    render();
-    const el = generateMarkdown();
-    const stackedit = new Stackedit();
-    // Open the iframe
-    stackedit.openFile({
-      name: '', // with an optional filename
-      content: {
-        text: el, // and the Markdown content.
-      },
-    });
+    try {
+      updateFromInput();
+      cleanAuthorArray();
+      render();
+      const el = generateMarkdown();
+      const stackedit = new Stackedit();
+      // Open the iframe
+      stackedit.openFile({
+        name: '', // with an optional filename
+        content: {
+          text: el, // and the Markdown content.
+        },
+      });
+    } catch (e) {
+      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${e.message}`);
+      $('#js-error-message').removeClass('hidden');
+    }
   });
 }
 
