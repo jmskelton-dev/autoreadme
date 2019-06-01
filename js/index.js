@@ -57,6 +57,15 @@ function generateReleaseMarkdown() {
   return releaseItems.join('\n');
 }
 
+/* Creates Error and Scrolls to Top */
+function generateError(errorMessage) {
+  $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${errorMessage}`);
+  $('#js-error-message').removeClass('hidden');
+  $('body,html').animate({
+    scrollTop: 0,
+  }, 500);
+}
+
 /* Returns HTML to create Readme Options Page. */
 function generateReadmeOptions() {
   const authors = generateAuthorInputs(STORE.authors);
@@ -235,9 +244,8 @@ function getContributors(gitRepo) {
       STORE.view = 'options';
       render();
     })
-    .catch((err) => {
-      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
-      $('#js-error-message').removeClass('hidden');
+    .catch((error) => {
+      generateError(error.message);
     });
 }
 
@@ -256,9 +264,8 @@ function getRepoDetails(gitRepo) {
       storeRepoDetails(responseJson);
       getContributors(gitRepo);
     })
-    .catch((err) => {
-      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
-      $('#js-error-message').removeClass('hidden');
+    .catch((error) => {
+      generateError(error.message);
     });
 }
 
@@ -276,9 +283,8 @@ function getRepoReleases(gitRepo) {
     .then((responseJson) => {
       storeReleaseDetails(responseJson);
     })
-    .catch((err) => {
-      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${err.message}`);
-      $('#js-error-message').removeClass('hidden');
+    .catch((error) => {
+      generateError(error.message);
     });
 }
 
@@ -348,9 +354,8 @@ function watchForm() {
       const githubUserRepo = parseUserInput(gitRepo);
       getRepoDetails(githubUserRepo);
       getRepoReleases(githubUserRepo);
-    } catch (e) {
-      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${e.message}`);
-      $('#js-error-message').removeClass('hidden');
+    } catch (error) {
+      generateError(error.message);
     }
   });
 }
@@ -373,9 +378,8 @@ function watchSubmitOptionsButton() {
           text: el, // and the Markdown content.
         },
       });
-    } catch (e) {
-      $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${e.message}`);
-      $('#js-error-message').removeClass('hidden');
+    } catch (error) {
+      generateError(error.message);
     }
   });
 }

@@ -165,7 +165,7 @@ header {
   }
 
   section, .mainForm {
-    width: 60%;
+    width: 94%;
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
@@ -462,6 +462,11 @@ footer {
   top: 0.3125rem;
 }
 
+@media only screen and (min-width: 460px) {
+  section, .mainForm {
+    width: 80%;
+  }
+}
 
 @media only screen and (min-width: 768px) {
 
