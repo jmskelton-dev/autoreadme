@@ -139,6 +139,18 @@ function generateMarkdown() {
     `;
 }
 
+/* Generate Readme Download */
+function generateReadmeDownload(output) {
+  let element = document.createElement('a');
+  $(element).attr('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(output));
+  $(element).attr('download', 'README.md');
+  $(element).hide();
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
+
 /* Store GitHub Repo details in STORE object */
 function storeRepoDetails(responseJson) {
   STORE.name = responseJson.name;
@@ -387,10 +399,17 @@ function watchSubmitOptionsButton() {
           text: el, // and the Markdown content.
         },
       });
-      generateInfoMessage(`Your README Markup has been generated below. Copy and paste the markup into your README.md file and you will be ready to go!`);
+      generateInfoMessage(`Your README Markup has been generated below. You can download a ready-made README.md file by clicking the Download button below. If you wish to make more changes to your file, you can modify them below and then copy and paste the markup into your README.md file and you will be ready to go!`);
     } catch (error) {
       generateError(error.message);
     }
+  });
+}
+
+/* Watched for click of download button */
+function watchDownloadButton() {
+  $('#downloadMarkup').on('submit', function (event) {
+    generateReadmeDownload(generateMarkdown());
   });
 }
 
@@ -458,6 +477,7 @@ function initializePage() {
   watchDeleteAuthor();
   watchAddAuthor();
   watchUpdateAuthor();
+  watchDownloadButton();
 
   // Render Function
   render();
