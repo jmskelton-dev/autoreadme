@@ -31,13 +31,19 @@
     return authorInputs.join("\n");
   }
 
-  /* Generate markdown for releases */
   function generateReleaseMarkdown() {
-    for (const release of releases) {
-      return `* ${release.version} | [${release.name}](${release.url})\n    * ${release.description}`;
-    }
+    const releaseItems = releases.map((release, index) => generateReleaseMarkdownItem(release, index));
+    console.log(releaseItems);
+    return releaseItems.join('\n');
   }
 
+  /* Generate markdown for releases */
+  function generateReleaseMarkdownItem(release, index) {
+      const releaseItem = `* ${release.version} | [${release.name}](${release.url})\n    * ${release.description}`;
+      console.log(releaseItem);
+      return releaseItem;
+  }
+  
   /* Returns HTML to create Readme Options Page. */
   function generateReadmeOptions() {
     
