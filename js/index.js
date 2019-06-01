@@ -33,14 +33,12 @@
 
   function generateReleaseMarkdown() {
     const releaseItems = releases.map((release, index) => generateReleaseMarkdownItem(release, index));
-    console.log(releaseItems);
     return releaseItems.join('\n');
   }
 
   /* Generate markdown for releases */
   function generateReleaseMarkdownItem(release, index) {
       const releaseItem = `* ${release.version} | [${release.name}](${release.url})\n    * ${release.description}`;
-      console.log(releaseItem);
       return releaseItem;
   }
   
@@ -110,7 +108,6 @@
 
   /* Returns Markdown to create Markdown box. */
   function generateMarkdown() {
-    console.log(`generateMarkdown fired`);
     const markdownAuthors = generateAuthorMarkdown(STORE.authors);
     const markdownReleases = generateReleaseMarkdown();
     return `${STORE.name === '' ? '' : `## ${STORE.name}`}${STORE.description === '' ? '' : `\n${STORE.description}`}${STORE.sites === '' ? '' : `\n\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}${STORE.screenshots[0].url === '' ? '' : `\n![Mobile Screenshot](${STORE.screenshots[0].url})`}${STORE.screenshots[1].url === '' ? '' : `\n![Desktop Screenshot](${STORE.screenshots[1].url})`}${STORE.instructions === '' ? '' : `\n\n## Installation Instructions\n${STORE.instructions}`}${releases.version === '' ? '' : `\n\n## Release History`}\n${markdownReleases}${markdownAuthors === '' ? '' : `\n\n## Authors\n${markdownAuthors}`} ${STORE.license === '' ? '' : `\n\n## License\n${STORE.license}`}
@@ -218,7 +215,6 @@
 
   /* Get user input from Form and update STORAGE. */
   function updateFromInput () {
-    console.log(`updateFromInput fired`)
     STORE.name = $('#repo-project-name').val();
     STORE.description = $('#repo-project-description').val();
     STORE.sites = $('#repo-live-demo-url').val();
@@ -306,7 +302,6 @@
 
   /* Clears STORE and releases when user pulls data for new repo */
   function resetProject () {
-      console.log('resetting project');
       STORE.name = 'My Project';
       STORE.description = '';
       STORE.authors = [];
@@ -387,7 +382,6 @@
         render();
         const el = generateMarkdown();
         const stackedit = new Stackedit();
-        console.log(el);
         // Open the iframe
         stackedit.openFile({
           name: '', // with an optional filename
