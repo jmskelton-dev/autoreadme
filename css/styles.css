@@ -162,7 +162,7 @@ header {
 
   section, .alert, .mainForm {
     width: 60%;
-    max-width: 80rem;
+    max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
   }
