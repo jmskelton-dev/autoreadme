@@ -96,7 +96,7 @@ header {
   display: flex;
   align-self: stretch;
   align-items: center;
-  height: 4.6875rem;
+  height: 4.6875em;
   color: #ffffff;
   background-color: var(--gray-dark);
   padding-left: 1.25em;
