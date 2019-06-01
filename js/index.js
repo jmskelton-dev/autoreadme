@@ -40,7 +40,7 @@ function generateAuthorMarkdownItem(author, index) {
 /* Generate markdown via generateAuthorInputItem */
 function generateAuthorMarkdown(authors) {
   const authorInputs = authors.map((author, index) => generateAuthorMarkdownItem(author, index));
-  return authorInputs.join('\n');
+  return authorInputs.join('\n\n');
 }
 
 /* Generate markdown for releases */
@@ -116,7 +116,7 @@ function generateReadmeOptions() {
 function generateMarkdown() {
   const markdownAuthors = generateAuthorMarkdown(STORE.authors);
   const markdownReleases = generateReleaseMarkdown();
-  return `${STORE.name === '' ? '' : `## ${STORE.name}`}${STORE.description === '' ? '' : `\n${STORE.description}`}${STORE.sites === '' ? '' : `\n\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}${STORE.url === '' ? '' : `\n![Screenshot](https://image.thum.io/get/${STORE.url})`}${STORE.instructions === '' ? '' : `\n\n## Installation Instructions\n${STORE.instructions}`}${releases.version === '' ? '' : '\n\n## Release History'}\n${markdownReleases}${markdownAuthors === '' ? '' : `\n\n## Authors\n${markdownAuthors}`} ${STORE.license === '' ? '' : `\n\n## License\n${STORE.license}`}
+  return `${STORE.name === '' ? '' : `## ${STORE.name}`}${STORE.description === '' ? '' : `\n${STORE.description}`}${STORE.sites === '' ? '' : `\n\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}${STORE.url === '' ? '' : `\n\n![Screenshot](https://image.thum.io/get/${STORE.url})`}${STORE.instructions === '' ? '' : `\n\n## Installation Instructions\n${STORE.instructions}`}${releases.version === '' ? '' : '\n\n## Release History'}\n${markdownReleases}${markdownAuthors === '' ? '' : `\n\n## Authors\n${markdownAuthors}`} ${STORE.license === '' ? '' : `\n\n## License\n${STORE.license}`}
     `;
 }
 
