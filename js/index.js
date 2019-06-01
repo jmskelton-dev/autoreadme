@@ -66,6 +66,14 @@ function generateError(errorMessage) {
   }, 500);
 }
 
+function generateInfoMessage(message, hasIcon = false) {
+  $(`#js-info-message`).html(`${hasIcon ? `<i class="fas fa-info-circle" aria-hidden="true"></i> ` : ``}${message}`);
+  $(`#js-info-message`).removeClass('hidden');
+  $('body,html').animate({
+    scrollTop: 0,
+  }, 500);
+}
+
 /* Returns HTML to create Readme Options Page. */
 function generateReadmeOptions() {
   const authors = generateAuthorInputs(STORE.authors);
@@ -344,6 +352,7 @@ function watchForm() {
   $('#repoURLForm').on('submit', (event) => {
     event.preventDefault();
     $('#js-error-message').addClass('hidden');
+    $('#js-info-message').addClass('hidden');
     if (STORE.view === 'options') {
       resetProject();
     }
@@ -363,6 +372,7 @@ function watchSubmitOptionsButton() {
   $('#readmeOptionsForm').on('submit', (event) => {
     event.preventDefault();
     $('#js-error-message').addClass('hidden');
+    $('#js-info-message').addClass('hidden');
     STORE.view = 'output';
     try {
       updateFromInput();
@@ -377,6 +387,7 @@ function watchSubmitOptionsButton() {
           text: el, // and the Markdown content.
         },
       });
+      generateInfoMessage(`Your README Markup has been generated below. Copy and paste the markup into your README.md file and you will be ready to go!`);
     } catch (error) {
       generateError(error.message);
     }
@@ -387,6 +398,8 @@ function watchSubmitOptionsButton() {
 function watchEditButton() {
   $('#readmeOutputForm').on('submit', (event) => {
     event.preventDefault();
+    $('#js-error-message').addClass('hidden');
+    $('#js-info-message').addClass('hidden');
     STORE.view = 'options';
     render();
   });
