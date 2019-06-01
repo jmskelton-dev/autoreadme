@@ -58,6 +58,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', 'Raleway', sans-serif;
 }
 
+h1, h2 {
+  font-size: 1.6em;
+}
+
 a {
 color: #fff;
 }
@@ -110,7 +114,7 @@ header {
 }
 
 /* Typewriter CSS courtsey of http://css-tricks.com */
-  .typewriter h1 {
+  .typewriter h2 {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid #269f42; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
@@ -123,6 +127,12 @@ header {
             animation: 
       typing 3.5s steps(40, end),
       blink-caret .75s step-end infinite;
+  }
+
+  .intro .typewriter span {
+    display: block;
+    width: max-content;
+    margin-top: 5px;
   }
 
   /* The typing effect */
@@ -165,7 +175,7 @@ header {
   }
 
   section, .mainForm {
-    width: 94%;
+    width: 100%;
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
@@ -194,11 +204,6 @@ header {
 
   .intro {
     margin-bottom: 0.9375em;
-  }
-
-  .intro h2 {
-    font-size: 1.75em;
-    font-weight: bolder;
   }
 
   section *:first-child {
@@ -344,13 +349,15 @@ header {
     background: none;
     height: 2.8rem;
     line-height: 2.8rem;
-    padding: 0rem 0.5625rem;
+    margin: 0rem;
+    font-size: .90rem;
   }
 
   .form .checkbox input[type="checkbox"] {
     width: 1.2rem;
     height: 1.2rem;
     vertical-align: middle;
+    margin: 0rem 0.5625rem 0rem 0rem;
   }
 
   .btn {
@@ -462,10 +469,20 @@ footer {
   top: 0.3125rem;
 }
 
-@media only screen and (min-width: 460px) {
+@media only screen and (min-width: 470px) {
   section, .mainForm {
     width: 80%;
   }
+  header h1 {
+    font-size: 2em;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .intro .typewriter span {
+    display: initial;
+  }
+
 }
 
 @media only screen and (min-width: 768px) {
@@ -476,6 +493,10 @@ footer {
 
   .form .authors input {
     max-width: initial;
+  }
+
+  h1 {
+    font-size: 2em;
   }
 
 }
