@@ -310,7 +310,6 @@ function updateFromInput() {
   STORE.license = $('#repo-license').val();
 
   if ($('#screenshot-include').prop( "checked" ) &  $('#repo-live-demo-url').val() === ''){
-    console.log('Error. Unable to screenshot as no URL provided')
     throw new Error('Unable to generate screenshot as no URL provided')
   } else {
     if ($('#screenshot-include').prop( "checked" )) {
