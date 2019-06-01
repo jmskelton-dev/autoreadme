@@ -3,6 +3,7 @@ Captstone 1 project created by Dora and Jonathan
 
 ## Demo
 [Live Demo](https://autoreadme.dev "https://autoreadme.dev")
+
 ![Screenshot](https://image.thum.io/get/https://autoreadme.dev)
 
 ## Release History
