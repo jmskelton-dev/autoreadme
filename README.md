@@ -1,5 +1,5 @@
 ## AutoREADME.dev
-Captstone 1 project created by Dora and Jonathan
+Captstone 1 project created by Dora and Jonathan.
 
 ## Demo
 [Live Demo](https://autoreadme.dev "https://autoreadme.dev")
@@ -18,9 +18,8 @@ Live Site: https://autoreadme.dev
 
 ## Authors
 1: jskelton36
+
 2: findingdori 
 
 ## License
 Released under MIT
-
-//README.md created from project
