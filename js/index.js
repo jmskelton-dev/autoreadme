@@ -8,18 +8,7 @@ const STORE = {
   sites: '',
   license: '',
   instructions: '',
-  screenshots: [
-    {
-      type: 'mobile',
-      display: false,
-      url: '',
-    },
-    {
-      type: 'desktop',
-      display: false,
-      url: '',
-    },
-  ],
+  url: '',
 };
 
 const releases = [];
@@ -109,14 +98,9 @@ function generateReadmeOptions() {
       <legend><i class="fas fa-images icon" aria-hidden="true"></i> Screenshots</legend>
       <ul>
         <li>
-          <label for="screenshot-mobile-url">Mobile Screenshot URL</label>
-          <input type="text" name="screenshot-mobile-url" id="screenshot-mobile-url" placeholder="Enter mobile screenshot URL here." ${STORE.screenshots[0].display ? `value="${STORE.screenshots[0].url}"` : ''}>
-          <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
-        </li>
-        <li>
-          <label for="screenshot-desktop-url">Desktop Screenshot URL</label>
-          <input type="text" name="screenshot-desktop-url" id="screenshot-desktop-url" placeholder="Enter desktop screenshot URL here."${STORE.screenshots[1].display ? `value="${STORE.screenshots[1].url}"` : ''}>
-          <span>(eg: https://i.imgur.com/3aWOj91.png)</span>
+          <label for="screenshot-live-url">Live URL</label>
+          <input type="text" name="screenshot-live-url" id="screenshot-live-url" placeholder="Enter live screenshot URL here." ${STORE.screenshots ? `value="${STORE.screenshots}"` : ''}>
+          <span>(eg: https://autoreadme.dev)</span>
         </li>
       </ul>
     </fieldset>
@@ -132,7 +116,7 @@ function generateReadmeOptions() {
 function generateMarkdown() {
   const markdownAuthors = generateAuthorMarkdown(STORE.authors);
   const markdownReleases = generateReleaseMarkdown();
-  return `${STORE.name === '' ? '' : `## ${STORE.name}`}${STORE.description === '' ? '' : `\n${STORE.description}`}${STORE.sites === '' ? '' : `\n\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}${STORE.screenshots[0].url === '' ? '' : `\n![Mobile Screenshot](${STORE.screenshots[0].url})`}${STORE.screenshots[1].url === '' ? '' : `\n![Desktop Screenshot](${STORE.screenshots[1].url})`}${STORE.instructions === '' ? '' : `\n\n## Installation Instructions\n${STORE.instructions}`}${releases.version === '' ? '' : '\n\n## Release History'}\n${markdownReleases}${markdownAuthors === '' ? '' : `\n\n## Authors\n${markdownAuthors}`} ${STORE.license === '' ? '' : `\n\n## License\n${STORE.license}`}
+  return `${STORE.name === '' ? '' : `## ${STORE.name}`}${STORE.description === '' ? '' : `\n${STORE.description}`}${STORE.sites === '' ? '' : `\n\n## Demo\n[Live Demo](${STORE.sites} "${STORE.sites}")`}${STORE.url === '' ? '' : `\n![Screenshot](https://image.thum.io/get/${STORE.url})`}${STORE.instructions === '' ? '' : `\n\n## Installation Instructions\n${STORE.instructions}`}${releases.version === '' ? '' : '\n\n## Release History'}\n${markdownReleases}${markdownAuthors === '' ? '' : `\n\n## Authors\n${markdownAuthors}`} ${STORE.license === '' ? '' : `\n\n## License\n${STORE.license}`}
     `;
 }
 
@@ -197,18 +181,7 @@ function resetProject() {
   STORE.sites = '';
   STORE.license = '';
   STORE.instructions = '';
-  STORE.screenshots = [
-    {
-      type: 'mobile',
-      display: false,
-      url: '',
-    },
-    {
-      type: 'desktop',
-      display: false,
-      url: '',
-    },
-  ];
+  STORE.url = '';
 
   releases.length = 0;
 }
@@ -327,8 +300,7 @@ function updateFromInput() {
   STORE.sites = $('#repo-live-demo-url').val();
   STORE.instructions = $('#repo-installation-instructions').val();
   STORE.license = $('#repo-license').val();
-  STORE.screenshots[0].url = $('#screenshot-mobile-url').val();
-  STORE.screenshots[1].url = $('#screenshot-desktop-url').val();
+  STORE.url = $('#screenshot-live-url').val();
 }
 
 /* Parses user input to find github repo URL */

@@ -58,6 +58,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', 'Raleway', sans-serif;
 }
 
+h1 a:visited { 
+  color: #fff;
+}
+
 legend {
   font-family: 'Raleway';
 }
@@ -228,7 +232,7 @@ header {
     border: 0.0625rem solid var(--box-border);
     margin-bottom: 1.875rem;
     border-radius: 0.3125rem;
-  }
+  } 
 
   .form li.button{
     /*  */
