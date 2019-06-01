@@ -1,61 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>autoReadMe</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/all.css">
-        <link rel="stylesheet" href="css/styles.css">
-        <script src="js/jquery-3.4.1.js"></script>
-    </head>
-    <body>
-        <header role="banner">
-            <h1><span class="logo"><i class="fas fa-code"></i></span>AutoREADME.dev</h1>
-        </header>
-        <main class="container">
-            <section id="landing-info" class="intro">
-                <div class="typewriter">
-                <h1>Create README.md for Github Repos</h1></div>
-                <p>Enter your repo URL and grab the details from GitHub and prepopulate your README.md file.</p>
-            </section>
-            <div id="mainForm" class="mainForm">
-                <div id="js-error-message" class="alert error-message hidden" role="alert" aria-live="polite"></div>
-                <form role="form" id="repoURLForm" class="form">
-                    <fieldset>
-                        <legend><i class="fas fa-code-branch icon" aria-hidden="true"></i> Repo Information</legend>
-                        <ul>
-                            <li>
-                                <label for="repo-url">Github Repo URL</label>
-                                <input type="text" name="repo-url" id="repo-url" placeholder="Enter your GitHub repo URL here." required>
-                                <span aria-hidden="true">(eg: https://github.com/jskelton36/autoreadme)</span>
-                            </li>
-                            <li class="button">
-                                <button type="submit" id="repoInfo" class="btn btn-primary">Get Repo Info</button>
-                            </li>
-                        </ul>
-                    </fieldset>
-                </form>
-                <form role="form" id="readmeOptionsForm" class="form">
-                </form>
-                <div id="resultsPage" class="resultsPage">
-                    <form role="form" id="readmeOutputForm">
-                    <button type="submit" id="editOptions" class="btn btn-primary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Edit Options</button>
-                    </form>
-                    <div id="stackedit" class='stackedit'>
 
-                    </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>autoReadMe</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+    <header role="banner">
+        <h1><span role="logo icon" class="logo"><i class="fas fa-code"></i></span>AutoREADME.dev</h1>
+    </header>
+    <main class="container">
+        <section id="landing-info" class="intro">
+            <div role="typerwriter animation" class="typewriter">
+                <h1>Create README.md for Github Repos</h1>
+            </div>
+            <p>Enter your repo URL and grab the details from GitHub and prepopulate your README.md file.</p>
+        </section>
+        <div id="mainForm" role="Enter Github Repo" class="mainForm">
+            <div id="js-error-message" class="alert error-message hidden" role="alert" aria-live="polite"></div>
+            <form role="form" id="repoURLForm" class="form">
+                <fieldset>
+                    <legend><i class="fas fa-code-branch icon" aria-hidden="true"></i> Repo Information</legend>
+                    <ul>
+                        <li>
+                            <label for="repo-url">Github Repo URL</label>
+                            <input type="text" name="repo-url" id="repo-url"
+                                placeholder="Enter your GitHub repo URL here." required>
+                            <span aria-hidden="true">(eg: https://github.com/jskelton36/autoreadme)</span>
+                        </li>
+                        <li class="button">
+                            <button type="submit" id="repoInfo" class="btn btn-primary">Get Repo Info</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+            <form role="form" id="readmeOptionsForm" class="form">
+            </form>
+            <div id="resultsPage" role="markdown Results" class="resultsPage">
+                <form role="form" id="readmeOutputForm">
+                    <button type="submit" id="editOptions" class="btn btn-primary"><i class="fas fa-arrow-left"
+                            aria-hidden="true"></i> Edit Options</button>
+                </form>
+                <div id="stackedit" role="Stackedit Window" class='stackedit'>
+
                 </div>
             </div>
-        </main>
-        <footer>
-            &copy; 2019 Jonathan Skelton and Dora Gil
-            <a href="javascript:" id="return-to-top"><i class="fas fa-arrow-up"></i></a>
-        </footer>       
-        <script src="js/index.js"></script>
-        <script src="js/stackedit.js"></script>
-    </body>
+        </div>
+    </main>
+    <footer>
+        &copy; 2019 Jonathan Skelton and Dora Gil
+        <a href="javascript:" id="return-to-top"><i class="fas fa-arrow-up"></i></a>
+    </footer>
+    <script src="js/index.js"></script>
+    <script src="js/stackedit.js"></script>
+</body>
+
 </html>
