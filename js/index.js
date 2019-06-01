@@ -98,8 +98,8 @@ function generateReadmeOptions() {
       <legend><i class="fas fa-images icon" aria-hidden="true"></i> Screenshots</legend>
       <ul>
         <li>
-          <label for="screenshot-live-url">Live URL</label>
-          <input type="text" name="screenshot-live-url" id="screenshot-live-url" placeholder="Enter live screenshot URL here." ${STORE.screenshots ? `value="${STORE.screenshots}"` : ''}>
+          <label for="screenshot-live-url">Live Website</label>
+          <input type="text" name="screenshot-live-url" id="screenshot-live-url" placeholder="Enter Live URL for screenshot." ${STORE.screenshots ? `value="${STORE.screenshots}"` : ''}>
           <span>(eg: https://autoreadme.dev)</span>
         </li>
       </ul>
