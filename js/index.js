@@ -74,6 +74,45 @@ function generateInfoMessage(message, hasIcon = false) {
   }, 500);
 }
 
+/* Returns HTML to create Output Page without Stack Edit */
+function generateStaticOutputPage() {
+  const markup = generateMarkdown();
+
+  return `<fieldset>
+    <legend>README Markup Output</legend>
+    <p>Your README Markup has been generated below. You can download a ready-made README.md file by clicking the Download button below. If you wish to make more changes to your file, you can modify them below and then copy and paste the markup into your README.md file and you will be ready to go!</p>
+    <ul>
+      <li>
+        <label for="output-markdown-syntax">Generated Markdown Syntax</label>
+        <textarea name="output-markdown-syntax" id="output-markdown-syntax" cols="30" rows="10" class="output">${markup}</textarea>
+      </li>
+      <li class="button">
+        <button type="button"  id="downloadMarkup" name="output-download-file" class="btn btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download README.md File</button>
+      </li>
+    </ul>
+  </fieldset>
+  <button type="submit" id="editOptions" class="btn"><i class="fas fa-arrow-left" aria-hidden="true"></i> Edit Options</button>`
+} 
+
+function generateStackEditOutputPage() {
+  const el = generateMarkdown();
+  const stackedit = new Stackedit();
+  // Open the iframe
+  stackedit.openFile({
+    name: '', // with an optional filename
+    content: {
+      text: el, // and the Markdown content.
+    },
+  });
+  return `<p>Your README Markup has been generated below. You can download a ready-made README.md file by clicking the Download button below. If you wish to make more changes to your file, you can modify them below and then copy and paste the markup into your README.md file and you will be ready to go!</p>
+  <ul>
+    <li class="button">
+      <button type="button"  id="downloadMarkup" name="output-download-file" class="btn btn-download"><i class="fas fa-download" aria-hidden="true"></i> Download README.md File</button>
+    </li>
+  </ul>
+  <button type="submit" id="editOptions" class="btn"><i class="fas fa-arrow-left" aria-hidden="true"></i> Edit Options</button>`;
+}
+
 /* Returns HTML to create Readme Options Page. */
 function generateReadmeOptions() {
   const authors = generateAuthorInputs(STORE.authors);
@@ -224,6 +263,15 @@ function renderReadmeOptions() {
   $('#readmeOptionsForm').html(generateReadmeOptions());
 }
 
+function renderOutput() {
+  /* Checks if Safari. If so, provide static textarea with output. Otherwise, display Stack Edit with generated output */
+  if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+    $('#readmeOutputForm').html(generateStaticOutputPage());
+  } else {
+    $('#readmeOutputForm').html(generateStackEditOutputPage());
+  }
+}
+
 /* Renders proper page according to STORE.view value */
 function render() {
   if (STORE.view === 'start') {
@@ -238,7 +286,7 @@ function render() {
     $('#readmeOptionsForm').show();
     $('#resultsPage').hide();
   } else if (STORE.view === 'output') {
-    // renderOutput();
+    renderOutput();
     $('#landing-info').hide();
     $('#repoURLForm').hide();
     $('#readmeOptionsForm').hide();
@@ -390,16 +438,6 @@ function watchSubmitOptionsButton() {
       updateFromInput();
       cleanAuthorArray();
       render();
-      const el = generateMarkdown();
-      const stackedit = new Stackedit();
-      // Open the iframe
-      stackedit.openFile({
-        name: '', // with an optional filename
-        content: {
-          text: el, // and the Markdown content.
-        },
-      });
-      generateInfoMessage(`Your README Markup has been generated below. You can download a ready-made README.md file by clicking the Download button below. If you wish to make more changes to your file, you can modify them below and then copy and paste the markup into your README.md file and you will be ready to go!`);
     } catch (error) {
       generateError(error.message);
     }
@@ -408,8 +446,7 @@ function watchSubmitOptionsButton() {
 
 /* Watched for click of download button */
 function watchDownloadButton() {
-  $('#downloadMarkup').on('submit', function (event) {
-    event.preventDefault();
+  $('#readmeOutputForm').on('click', '#downloadMarkup', function (event) {
     generateReadmeDownload(generateMarkdown());
   });
 }
