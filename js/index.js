@@ -10,7 +10,7 @@ const STORE = {
   instructions: '',
   screenshot: {	
       display: false,	
-      url: '',	
+      url: ''	
     }
 };
 
@@ -62,7 +62,7 @@ function generateError(errorMessage) {
   $('#js-error-message').html(`<i class="fas fa-times-circle" aria-hidden="true"></i> Something went wrong: ${errorMessage}`);
   $('#js-error-message').removeClass('hidden');
   $('body,html').animate({
-    scrollTop: 0,
+    scrollTop: 0
   }, 500);
 }
 
@@ -70,7 +70,7 @@ function generateInfoMessage(message, hasIcon = false) {
   $(`#js-info-message`).html(`${hasIcon ? `<i class="fas fa-info-circle" aria-hidden="true"></i> ` : ``}${message}`);
   $(`#js-info-message`).removeClass('hidden');
   $('body,html').animate({
-    scrollTop: 0,
+    scrollTop: 0
   }, 500);
 }
 
@@ -101,7 +101,7 @@ function generateStackEditOutputPage() {
   stackedit.openFile({
     name: '', // with an optional filename
     content: {
-      text: el, // and the Markdown content.
+      text: el // and the Markdown content.
     },
   });
   return `<p>Your README Markup has been generated below. You can download a ready-made README.md file by clicking the Download button below. If you wish to make more changes to your file, you can modify them below and then copy and paste the markup into your README.md file and you will be ready to go!</p>
@@ -502,7 +502,7 @@ $(window).scroll(function scrollTop() {
 });
 $('#return-to-top').click(() => {
   $('body,html').animate({
-    scrollTop: 0,
+    scrollTop: 0
   }, 500);
 });
 
